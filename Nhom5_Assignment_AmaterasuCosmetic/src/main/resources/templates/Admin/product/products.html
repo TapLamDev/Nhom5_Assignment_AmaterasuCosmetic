@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicon icon -->
+<link rel="icon" type="image/x-icon"
+	th:href="@{/assets/images/Amaterasu3_removebg.png}">
+<title>Atemarasu-Admin</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<!-- Custom CSS -->
+<link th:href="@{/assets/extra-libs/c3/c3.min.css}" rel="stylesheet">
+<link th:href="@{/assets/libs/chartist/dist/chartist.min.css}"
+	rel="stylesheet">
+<link
+	th:href="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css}"
+	rel="stylesheet" />
+<!-- Custom CSS -->
+<link th:href="@{/dist/css/style.min.css}" rel="stylesheet">
+</head>
+
+<body>
+	
+	<span th:insert="~{Admin/common/header.html}"></span>
+	<span th:insert="~{Admin/common/menu.html}"></span>
+
+	<div class="page-wrapper">
+		<div class="content-wrapper">
+			<div class="row">
+				<div class="col-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">Quản lý sản phẩm</h4>
+							<p class="card-description">Thêm mới, cập nhật và xoá sản
+								phẩm</p>
+							<div id="successMessage" style="color: red; display: none;"></div>
+							<form action="/admin/products" method="Post"
+								class="form-horizontal" modelAttribute="item"
+								enctype="multipart/form-data">
+								<input type="hidden" name="id" value="${item.id}" />
+								<fieldset>
+									<div class="form-group">
+										<label for="id" class="col-sm-2 control-label">ID Sản
+											phẩm </label>
+										<div class="col-sm-10">
+											<input path="id" type="number" class="form-control"
+												id="id" name="id" placeholder="Product Id?" disabled="true">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="name" class="col-sm-2 control-label">Tên
+											sản phẩm </label>
+										<div class="col-sm-10">
+											<input path="name" type="text" class="form-control"
+												id="name" name="name" placeholder="Product Name?">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="image" class="col-sm-2 control-label">Hình
+											ảnh </label>
+										<div class="col-sm-10">
+											<input name="photo_file" type="file" accept="image"
+												class="form-control" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label for="price" class="col-sm-2 control-label">Giá
+										</label>
+										<div class="col-sm-10">
+											<input path="price" type="text" class="form-control"
+												id="price" name="price" placeholder="Product price?">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Ngày tạo</label>
+										<div class="col-sm-10">
+											<input type="date" path="createDate"
+												class="form-control" placeholder="Create Date">
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Tình trạng</label>
+										<div class="col-sm-10">
+											<input type="radio" 	 value="true">
+											Active
+											<input type="radio" path="available" value="false">
+											Inactive
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Loại sản phẩm </label>
+										<div class="col-sm-10">
+											<select path="category.id" class="form-control">
+												<option value="${category.id}" label="Chọn loại">
+												<c:forEach var="cat" items="${categories}">
+													<option value="${cat.id}" label="${cat.name}">
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label">Thương hiệu</label>
+										<div class="col-sm-10">
+											<select path="brand.id" class="form-control">
+												<option value="" label="Chọn thương hiệu">
+												<c:forEach var="bra" items="${brands}">
+													<option value="${bra.id}" label="${bra.name}">
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="describe" class="col-sm-2 control-label">Mô
+											tả </label>
+										<div class="col-sm-10">
+											<textarea path="describe" type="text"
+												class="form-control" id="describe" name="describe"
+												placeholder="Mô tả"></textarea>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="tonKho" class="col-sm-2 control-label">Số
+											lượng tồn kho </label>
+										<div class="col-sm-10">
+											<input path="tonKho" type="text" class="form-control"
+												id="tonKho" name="tonKho" placeholder="Số lượng tồn kho?">
+										</div>
+									</div>
+									<hr />
+									<div class="form-group">
+										<div class="col-sm-offset-2 col-sm-10">
+											<button formaction="/admin/create" class="btn btn-primary"
+												onclick="return validateForm()">Thêm</button>
+											<button formaction="/admin/update"
+												class="btn btn-secondary" onclick="showSuccessMessage()">Cập
+												nhật</button>
+											<a href="/admin/delete/${item.id}" class="btn btn-danger">Xoá</a>
+											<a href="/admin/products" class="btn btn-default">Reset</a> <a
+												href="/" class="btn btn-default">Trang chủ</a>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/assets/libs/popper.js/dist/umd/popper.min.js}"></script>
+	<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- apps -->
+	<!-- apps -->
+	<script th:src="@{/dist/js/app-style-switcher.js}"></script>
+	<script th:src="@{/dist/js/feather.min.js}"></script>
+	<script
+		th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+	<script th:src="@{/dist/js/sidebarmenu.js}"></script>
+	<!--Custom JavaScript -->
+	<script th:src="@{/dist/js/custom.min.js}"></script>
+	<!--This page JavaScript -->
+	<script th:src="@{/assets/extra-libs/c3/d3.min.js}"></script>
+	<script th:src="@{/assets/extra-libs/c3/c3.min.js}"></script>
+	<script th:src="@{/assets/libs/chartist/dist/chartist.min.js}"></script>
+	<script
+		th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
+	<script
+		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
+	<script
+		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
+	<script th:src="@{/dist/js/pages/dashboards/dashboard1.min.js}"></script>
+</body>
+
+</html>

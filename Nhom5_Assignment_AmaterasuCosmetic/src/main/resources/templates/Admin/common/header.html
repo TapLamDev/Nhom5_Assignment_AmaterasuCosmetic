@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <div class="preloader">
+            <div class="lds-ripple">
+                <div class="lds-pos"></div>
+                <div class="lds-pos"></div>
+            </div>
+        </div>
+        <div id="main-wrapper" data-theme="light" data-layout="vertical"
+            data-navbarbg="skin6" data-sidebartype="full"
+            data-sidebar-position="fixed" data-header-position="fixed"
+            data-boxed-layout="full">
+            <header class="topbar" data-navbarbg="skin6">
+                <nav class="navbar top-navbar navbar-expand-md">
+                    <div class="navbar-header" data-logobg="skin6">
+                        <a class="nav-toggler waves-effect waves-light d-block d-md-none"
+                            href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+                        <div class="navbar-brand">
+                            <a style="margin-left: 50px" href="/admin/index"> <img class="header__logo"
+                        th:src="@{/assets/images/Amaterasu3_removebg2.png}"
+                        height="90px" alt="">
+                    </a>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- End Logo -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Toggle which is visible on mobile only -->
+                        <!-- ============================================================== -->
+                        <a class="topbartoggler d-block d-md-none waves-effect waves-light"
+                            href="javascript:void(0)" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation"><i class="ti-more"></i></a>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- End Logo -->
+                    <!-- ============================================================== -->
+                   <!-- <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                         ============================================================== 
+                         toggle and nav items 
+                         ============================================================== 
+                    
+                         ============================================================== 
+                         Right side toggle and nav items 
+                         ============================================================== 
+                        <ul class="navbar-nav float-right">
+                            <c:choose>
+                                <c:when test="${not empty(username)}">
+                                    <ul class="navbar-nav m-auto w-100">
+                                            <li class="nav-item"><a class="nav-link text-dark pl-1"
+                                            href="/profile/index"><img alt=""src="/imagesProfile/${ac.image}" style="width:50px; height:50px;">${username}</a></li>
+                                        <li class="nav-item"><a class="nav-link text-dark pl-1"
+                                            href="/admin/logout"><i class="far fa-user-circle"></i> Đăng xuất</a></li>
+                                    </ul>
+                                </c:when>
+                                <c:otherwise>
+                                    <ul class="navbar-nav m-auto w-100">
+                                        <li class="nav-item"><a class="nav-link text-dark pl-1"
+                                            href="/admin/register"><i class="far fa-user-circle"></i> Đăng ký</a></li>
+                                        <li class="nav-item"><a class="nav-link text-dark pl-1"
+                                            href="/admin/login"><i class="far fa-user-circle"></i> Đăng nhập</a></li>
+                                    </ul>
+        
+                                </c:otherwise>
+        
+                            </c:choose>
+                             ============================================================== 
+                             User profile and search 
+                             ============================================================== 
+                        </ul>
+                    </div>-->
+                </nav>
+            </header>
+    </body>
+</html>

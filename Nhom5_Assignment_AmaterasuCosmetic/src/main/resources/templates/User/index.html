@@ -43,7 +43,7 @@
 </head>
 
 <body>
-	
+
 	<span th:insert="~{User/common/header.html}"></span>
 
 	<!-- content-->
@@ -81,8 +81,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				<img th:src="@{/assets/images/deal-hot-web.jpg}" alt="QC" class="img-fluid"
-					style="margin-top: 200px;">
+				<img th:src="@{/assets/images/deal-hot-web.jpg}" alt="QC" class="img-fluid" style="margin-top: 200px;">
 			</div>
 			<div class="col-md-9">
 				<div class="row">
@@ -91,34 +90,36 @@
 							<div class="carousel-item active">
 								<div class="col-md-10">
 									<div class="row">
-										<c:forEach var="item" items="${item}" varStatus="status">
-											<c:if test="${status.index <= 5}">
+										<th:forEach var="item" items="${item}" varStatus="status">
+											<th:if test="${status.index <= 5}">
 												<div class="col-md-4">
 													<a th:href="@{/detail}"> <img
-															th:src="@{/assets/images/${item.image}}"
-															class="product-img" alt="${item.name}">
+															th:src="@{/assets/images/${item.image}}" class="product-img"
+															alt="${item.name}">
 													</a>
 													<fmt:formatNumber var="roundedPrice" value="${item.price}"
 														type="number" maxFractionDigits="2" />
 													<h6 class="text-danger" style="margin-left: 70px;">Giá:
 														${roundedPrice} VNĐ</h6>
-													<h6 class="product__name" style="margin-left: 45px;">${item.name}
+													<h6 class="product__name" style="margin-left: 45px;"
+														th:text="*{name}">
+														${item.name}
 													</h6>
 												</div>
-											</c:if>
-										</c:forEach>
+											</th:if>
+											</th:forEach>
 									</div>
 								</div>
 							</div>
 							<div class="carousel-item">
 								<div class="col-md-9" style="margin-left: 50px">
 									<div class="row">
-										<c:forEach var="item" items="${item}" varStatus="status">
-											<c:if test="${status.index >= 6}">
+										<th:forEach var="item" items="${item}" varStatus="status">
+											<th:if test="${status.index >= 6}">
 												<div class="col-md-4">
 													<a th:href="@{/views/detail/${item.id}}"> <img
-															th:src="@{/assets/images/${item.image}}"
-															class="product-img" alt="${item.name}">
+															th:src="@{/assets/images/${item.image}}" class="product-img"
+															alt="${item.name}">
 													</a>
 													<fmt:formatNumber var="roundedPrice" value="${item.price}"
 														type="number" maxFractionDigits="2" />
@@ -127,8 +128,8 @@
 													<h6 class="product__name" style="margin-left: 45px;">${item.name}
 													</h6>
 												</div>
-											</c:if>
-										</c:forEach>
+											</th:if>
+										</th:forEach>
 									</div>
 								</div>
 							</div>

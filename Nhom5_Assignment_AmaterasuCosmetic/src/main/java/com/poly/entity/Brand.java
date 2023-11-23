@@ -25,7 +25,10 @@ public class Brand implements Serializable {
 	String id;
 	@Column(columnDefinition = "nvarchar(max)")
 	String name;
+	@Column(columnDefinition = "nvarchar(max)")
+	String image;
 	@OneToMany(mappedBy = "brand")
+
 	List<Product> products;
 
 }

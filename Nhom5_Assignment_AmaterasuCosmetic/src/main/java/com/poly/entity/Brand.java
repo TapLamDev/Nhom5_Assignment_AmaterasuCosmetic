@@ -28,6 +28,6 @@ public class Brand implements Serializable {
 	@Column(columnDefinition = "nvarchar(max)")
 	String image;
 	@OneToMany(mappedBy = "brand")
-
 	List<Product> products;
+
 }

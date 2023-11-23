@@ -25,7 +25,7 @@
 </head>
 
 <body>
-	
+
 	<span th:insert="~{Admin/common/header.html}"></span>
 	<span th:insert="~{Admin/common/menu.html}"></span>
 
@@ -57,33 +57,27 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="item" items="${page.content}">
-											<tr>
-												<td><a href="/admin/edit/${item.id}"
-													class="btn btn-primary">Edit</a> <a
-													href="/admin/delete/${item.id}" class="btn btn-danger">Delete</a></td>
-												<td>${item.id}</td>
-												<td>${item.name}</td>
-
-												<fmt:formatNumber var="roundedPrice" value="${item.price}"
-													type="number" maxFractionDigits="2" />
-												<td>${roundedPrice}VNĐ</td>
-
-												<td><c:if test="${not empty item.createDate}">
-														<c:set var="dateFormat" value="dd-MM-yyyy" />
-														<fmt:formatDate value="${item.createDate}"
-															pattern="${dateFormat}" />
-													</c:if></td>
-												<td>${item.category.name}</td>
-												<td>${item.brand.name}</td>
-												<td><c:if test="${item.available == true}"><span style="color: green;">Is active</span></c:if>
-													<c:if test="${item.available == false}"><span style="color: red;">Stop active</span></c:if></td>
-												<td><img height="100px" width="100px" alt=""
-													src="/templates/assets/images/${item.image}"></td>
-												<td>${item.describe}</td>
-												<td>${item.tonKho}</td>
-											</tr>
-										</c:forEach>
+										<tr>
+											<td>
+											<a href="/admin/edit/${item.id}"
+												class="btn btn-outline-primary">Edit</a><br> <a
+												href="/admin/delete/${item.id}"
+												class="btn btn-outline-danger">Delete</a>
+											</td>
+											<td>${item.id}</td>
+											<td>${item.name}</td>
+											<td>${roundedPrice}VNĐ</td>
+											<td></td>
+											<td>${item.category.name}</td>
+											<td>${item.brand.name}</td>
+											<td><span style="color: green;">Is active</span>
+											<span style="color: red;">Stop active</span>
+											</td>
+											<td><img height="100px" width="100px" alt=""
+												src="/templates/assets/images/${item.image}"></td>
+											<td>${item.describe}</td>
+											<td>${item.tonKho}</td>
+										</tr>
 									</tbody>
 								</table>
 

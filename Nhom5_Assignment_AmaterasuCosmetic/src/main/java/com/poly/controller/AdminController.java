@@ -12,8 +12,8 @@ public class AdminController {
 		return "Admin/product/products";
 	}
 
-	@GetMapping("/admin/listproduct")
+	@GetMapping("/admin/brand")
 	public String listProduct() {
-		return "Admin/product/listProducts";
+		return "Admin/brand/brand";
 	}
 }

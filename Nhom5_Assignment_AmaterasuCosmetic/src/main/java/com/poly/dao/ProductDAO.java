@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.poly.entity.Product;
 
-public interface ProductAdminDao extends JpaRepository<Product, Integer> {
+public interface ProductDAO extends JpaRepository<Product, Integer> {
 
 	// Định nghĩa phương thức để phân trang và sắp xếp
     Page<Product> findAll(Pageable pageable);
@@ -25,5 +25,8 @@ public interface ProductAdminDao extends JpaRepository<Product, Integer> {
 
 
 	List<Product> findByName(String keyword);
+
+
+	List<Product> findByCategoryId(String cid);
 
 }

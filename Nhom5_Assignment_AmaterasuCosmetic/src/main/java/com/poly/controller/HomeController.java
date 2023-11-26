@@ -8,12 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.poly.entity.Product;
-import com.poly.dao.ProductAdminDao;
+import com.poly.dao.ProductDAO;
 
 @Controller
 public class HomeController {
 	@Autowired
-	ProductAdminDao dao;
+	ProductDAO dao;
 
 	@GetMapping("/")
 	public String homeIndex(Model model) {

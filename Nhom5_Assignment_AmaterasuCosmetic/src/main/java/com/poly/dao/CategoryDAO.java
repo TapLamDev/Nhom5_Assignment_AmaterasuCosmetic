@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.poly.entity.Category;
 
-public interface CategoryAdminDAO extends JpaRepository<Category, Integer>{
+public interface CategoryDAO extends JpaRepository<Category, Integer>{
 	
 	@Query("SELECT count(o) FROM Category o")
 	Integer getCount();

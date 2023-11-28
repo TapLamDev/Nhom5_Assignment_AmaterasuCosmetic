@@ -54,19 +54,13 @@ public class Product implements Serializable {
 	String describe;
 	@Column(name = "số lượng")
 	int qty;
-	
-	
 	int tonKho;
-
 	@ManyToOne
 	@JoinColumn(name = "Categoryid")
 	Category category;
-
 	@ManyToOne
-
 	@JoinColumn(name = "Brandid")
 	Brand brand;
-
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetails;

@@ -32,8 +32,42 @@
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script th:src="@{/assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
 	<style type="text/css">
-		.container mt-5 {
-			margin-top: 500px;
+		.container.mt-5 {
+			margin-top: 300px;
+			display: flex;
+			justify-content: flex-start;
+		}
+
+		.product-item {
+			width: 300px;
+			margin: 15px;
+			padding: 15px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			float: left;
+		}
+
+		.product-item img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+
+		.product-item h3 {
+			font-size: 20px;
+			margin-top: 15px;
+		}
+
+		.product-item p {
+			margin-top: 10px;
+		}
+
+		.product-item a {
+			text-decoration: none;
+			color: #000;
+			font-size: 16px;
+			margin-top: 10px;
 		}
 	</style>
 </head>
@@ -43,33 +77,26 @@
 	<span th:insert="~{User/common/header.html}"></span>
 
 	<!-- content-->
-
 	<div style="margin-top: 200px">
 		<div class="container mt-5">
 			<div class="row">
-				<th:if test="${param.keyword != null}">
-					<h3 class="text-center" style="color: #612f2c" th:text="'Kết quả tìm kiếm: ' + ${param.keyword}">
-					</h3>
-					<h3 class="text-center" style="color: #612f2c" th:text="${message}"></h3>
-					<div class="row" th:each="product : ${products}">
-						<div class="col-md-4" th:each="product : ${products}">
-							<a th:href="@{'/detail/' + ${product.id}}">
-								<img th:src="@{'/assets/images/' + ${product.image}}" class="product-img"
-									alt="${product.name}">
-							</a>
-							<h6 class="text-danger" style="margin-left: 70px;"
-								th:text="'Giá: ' + ${product.price} + ' VNĐ'"></h6>
-							<h6 class="product__name" th:text="${product.name}"></h6>
-						</div>
-					</div>
-				</th:if>
+				<h3 th:if="${brand != null}" th:text="${brand.name + ' (' + productCount + ')'}"></h3>
+				<div th:each="product : ${products}" class="product-item">
+					<img th:src="@{'/assets/images/' + ${product.image}}" alt="${product.name}">
+					<h6 class="product__name" style="margin-top: 5px" th:text="${product.name}"></h6>
+					<h6 class="text-danger" style="margin-left: 70px;">Giá:
+						<span class="formatted-price" th:text="${product.price}"></span>
+						VNĐ
+					</h6>
+					<!-- Link đến trang chi tiết sản phẩm -->
+					<button class="btn btn-danger" style="margin-left: 75px">
+						<a th:href="@{'/detail/' + ${product.id}}">Xem chi tiết</a>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
+	<hr>
 	<div class="container mt-5"></div>
 
 	<div class="container mt-5"></div>
@@ -87,32 +114,6 @@
 				// Đặt lại nội dung của phần tử với giá đã được định dạng
 				$(this).text(formattedPrice);
 			});
-		});
-	</script>
-
-	<script>
-		function add_li_hover(x) {
-			$(x).addClass("nav-item__after");
-		}
-
-		function remove_li_hover(x) {
-			$(x).removeClass("nav-item__after");
-		}
-
-		function hide() {
-			$(".mega-content").addClass("d-none");
-		}
-
-		function show() {
-			$(".mega-content").removeClass("d-none");
-		}
-
-		var owl = $('.owl-carousel');
-		owl.owlCarousel({
-			items: 4,
-			loop: true,
-			margin: 10,
-
 		});
 	</script>
 </body>

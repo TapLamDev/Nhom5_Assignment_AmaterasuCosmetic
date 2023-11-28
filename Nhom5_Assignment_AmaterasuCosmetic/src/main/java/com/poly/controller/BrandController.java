@@ -6,19 +6,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.poly.entity.Brand;
+import com.poly.entity.Product;
 import com.poly.dao.BrandDAO;
+import com.poly.dao.ProductDAO;
 
 @Controller
 public class BrandController {
 	@Autowired
-	BrandDAO dao;
+	BrandDAO bdao;
+
+	@Autowired
+	ProductDAO pdao;
 
 	@GetMapping("/brand")
 	public String brand(Model model) {
-		List<Brand> brand = dao.findAll();
-		model.addAttribute("brands", brand);
+		List<Brand> brands = bdao.findAll();
+		model.addAttribute("brands", brands);
 		return "User/brand";
+	}
+
+	@GetMapping("/productBrand/{name}")
+	public String productBrand(@PathVariable("name") String name, Model model) {
+		  Brand brand = bdao.findByName(name);
+	        List<Product> products = pdao.findByBrand(brand);
+	        model.addAttribute("products", products);
+	        List<Brand> brands = bdao.findAll();
+	        model.addAttribute("brand", brand);
+	        long productCount = bdao.countByBrand(brand);
+	        model.addAttribute("productCount", productCount);
+	        return "User/productBrand";
 	}
 }

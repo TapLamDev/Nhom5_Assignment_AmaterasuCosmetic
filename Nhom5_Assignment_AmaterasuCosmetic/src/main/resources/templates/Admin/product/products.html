@@ -154,16 +154,20 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr ng-repeat="item in items">
+											<tr ng-repeat="item in pager.items">
 												<td>
-													<button ng-click="edit(item)"
-														class="btn btn-outline-primary">
-														<i class="bi bi-pencil"></i> Edit
-													</button> <br>
-													<button ng-click="delete(item)"
-														class="btn btn-outline-danger">
-														<i class="bi bi-x-circle"></i>Delete
-													</button>
+													<p>
+														<button ng-click="edit(item)"
+															class="btn btn-outline-primary">
+															Edit
+														</button>
+													</p>
+													<p>
+														<button ng-click="delete(item)"
+															class="btn btn-outline-danger">
+															Delete
+														</button>
+													</p>
 												</td>
 												<td>{{item.id}}</td>
 												<td>{{item.name}}</td>
@@ -171,12 +175,27 @@
 												<td>{{item.createDate}}</td>
 												<td>{{item.category.name}}</td>
 												<td>{{item.brand.name}}</td>
-												<td><span style="color: green;">Is active</span> <span
-													style="color: red;">Stop active</span></td>
+												<td>{{item.available?'Available':'Inavailable'}}</td>
 												<td>{{item.tonKho}}</td>
 											</tr>
 										</tbody>
 									</table>
+									<nav aria-label="Page navigation">
+										<ul class="pagination justify-content-center">
+											<li class="page-item">
+												<button ng-click="pager.first()" class="page-link">First</button>
+											</li>
+											<li class="page-item">
+												<button ng-click="pager.prev()" class="page-link">Previous</button>
+											</li>
+											<li class="page-item">
+												<button ng-click="pager.next()" class="page-link">Next</button>
+											</li>
+											<li class="page-item">
+												<button ng-click="pager.last()" class="page-link">Last</button>
+											</li>
+										</ul>
+									</nav>
 								</div>
 							</div>
 						</div>

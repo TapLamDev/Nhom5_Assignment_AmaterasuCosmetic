@@ -51,114 +51,86 @@
 
 			<!-- Cột hình ảnh -->
 			<div class="col-md-5">
-				<img th:src="@{/assets/images/${item.image}}" class="img-fluid" alt="${item.name}">
+				<img th:src="@{'/assets/images/' + ${product.image}}" class="img-fluid" alt="${product.name}">
 			</div>
 
+			<!-- Cột thông tin -->
 			<!-- Cột thông tin -->
 			<div class="col-md-7">
 				<div class="card">
 					<div class="card-body">
-						<h3 class="card-title" style="color: #EC6090;">${item.name}</h3>
+						<h3 class="card-title" style="color: #EC6090;" th:text="${product.name}"></h3>
 						<div style="display: flex;">
-							<fmt:formatNumber var="roundedPrice" value="${item.price}" type="number"
-								maxFractionDigits="2" />
 							<p style="font-weight: bold;">Giá bán:</p>
-							<p style="color: red; font-weight: bold; margin-left: 20px;">&nbsp;${roundedPrice}
-								VNĐ</p>
+							<p style="color: red; font-weight: bold; margin-left: 20px;">
+								<span class="formatted-price" th:text="${product.price}"></span>
+								VNĐ
+							</p>
 						</div>
-						<!-- <c:if test="">
-							<fmt:formatNumber var="roundedPrice" value="${item.price}" type="number"
-								maxFractionDigits="2" />
-							<div class="card-body">
-								<div style="display: flex;">
-									<p style="font-weight: bold;">Giá gốc:</p>
-									<div
-										style="color: grey; font-weight: bold; margin-left: 20px; text-decoration: line-through;">
-										${roundedPrice}
-										VNĐ</div>
-									<div
-										style="color: red; font-weight: bold; margin-left: 20px; border: 1px solid red; border-radius: 10px; height: 25px; width: 50px; text-align: center;">
-										&nbsp;${roundedPrice}VNĐ</div>
-								</div>
-								<fmt:formatNumber var="roundedPrice" value="${item.price}" type="number"
-									maxFractionDigits="2" />
-								<div style="display: flex;">
-									<p style="font-weight: bold;">Giá bán:</p>
-									<p style="color: red; font-weight: bold; margin-left: 20px;">&nbsp;${roundedPrice}
-										VNĐ</p>
-
-								</div>
-								</c:if>
-								<c:if test="">
-									<fmt:formatNumber var="roundedPrice" value="${item.price}" type="number"
-										maxFractionDigits="2" />
-									<div class="card-body">
-										<fmt:formatNumber var="roundedPriceNew" value="" type="number"
-											maxFractionDigits="2" />
-										<div style="display: flex;">
-											<p style="font-weight: bold;">Giá bán:</p>
-											<p style="color: red; font-weight: bold; margin-left: 20px;">
-												&nbsp;${roundedPrice}
-												VNĐ</p>
-										</div>
-								</c:if> -->
-
-					</div>
-					<div style="font-weight: bold; display: flex;">
-						<div>${item.name}</div>
-					</div>
-					<div style="font-weight:; display: flex;">
-						<div>Mô tả: ${item.describe}</div>
-					</div>
-					<hr>
-					<div style="display: flex;">
-						<div style="font-weight: bold;">Thương hiệu: &nbsp;</div>
-						<div>${item.brand.name}</div>
-					</div>
-					<hr>
-					<c:if test="${item.available == false || item.tonKho <=1}">
+						<!-- Các thông tin khác về sản phẩm -->
+						<hr>
 						<div style="display: flex;">
-							<div style="font-weight: bold;">Trạng thái:</div>
-							<div>Hết hàng</div><br>
+							<div th:text="${product.name}"></div>
 						</div>
+						<div style="font-weight:bold; display: flex;">
+							<div>Mô tả: <span th:text="${product.describe}"></span></div>
+						</div>
+						<hr>
+						<div style="display: flex;">
+							<div style="font-weight: bold;">Thương hiệu: &nbsp;</div>
+							<div th:text="${product.brand.name}"></div>
+						</div>
+						<!-- Các thông tin khác về sản phẩm -->
+
+						<hr th:if="${product.available == false or product.tonKho <= 1}">
 						<hr>
 						<div style="display: flex;">
 							<div style="font-weight: bold; color:red;">Sản phẩm đang tạm hết hàng </div>
-
 						</div>
+						</hr>
 
-
-
-					</c:if>
-					<c:if test="${item.available == true && item.tonKho > 1}">
-						<div style="display: flex;">
-							<div style="font-weight: bold;">Trạng thái: &nbsp;</div>
-							<div>Còn hàng</div>
-
-						</div>
-						<hr>
-						<div style="display: flex;">
-							<div style="font-weight: bold;">Số lượng tồn kho: &nbsp;</div>
-							<div> ${item.tonKho }</div>
-						</div>
-						<hr>
-						<a href="/cart/add/${item.id}?price=${item.price}" class="btn btn-primary"
-							style="background-color: #EC6090; border: none; margin-top: 10px">Thêm
-							vào giỏ hàng</a> <a href="/cart/add/${item.id}?price=${item.price}&action=mua-ngay"
-							class="btn btn-primary"
-							style="background-color: #EC6090; border: none; margin-top: 10px">Mua
-							ngay</a>
-					</c:if>
-
-
-
+						<th:block th:if="${product.available == true and product.tonKho > 1}">
+							<hr>
+							<div style="display: flex;">
+								<div style="font-weight: bold;">Trạng thái: &nbsp;</div>
+								<div>Còn hàng</div>
+							</div>
+							<hr>
+							<div style="display: flex;">
+								<div style="font-weight: bold;">Số lượng tồn kho: &nbsp;</div>
+								<div th:text="${product.tonKho}"></div>
+							</div>
+							<hr>
+							<a th:href="@{/cart/add/{id}(id=${product.id}, price=${product.price})}"
+								class="btn btn-primary"
+								style="background-color: #EC6090; border: none; margin-top: 10px">Thêm vào giỏ hàng</a>
+							<a th:href="@{/cart/add/{id}(id=${product.id}, price=${product.price}, action=mua-ngay)}"
+								class="btn btn-primary"
+								style="background-color: #EC6090; border: none; margin-top: 10px">Mua ngay</a>
+						</th:block>
+					</div>
 				</div>
 			</div>
+
 		</div>
 
 	</div>
 
 	<span th:insert="~{User/common/footer.html}"></span>
+
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			// Lặp qua tất cả các phần tử có class là "formatted-price"
+			$(".formatted-price").each(function () {
+				// Lấy nội dung hiện tại của phần tử
+				var price = $(this).text();
+				// Định dạng giá thành dạng có dấu chấm
+				var formattedPrice = parseFloat(price).toLocaleString("vi-VN");
+				// Đặt lại nội dung của phần tử với giá đã được định dạng
+				$(this).text(formattedPrice);
+			});
+		});
+	</script>
 
 	<script>
 		function add_li_hover(x) {

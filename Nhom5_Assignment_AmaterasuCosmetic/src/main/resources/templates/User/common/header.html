@@ -6,8 +6,8 @@
 	<header class="py-3 bg-white fixed-top border-bottom border-dark">
 		<div class="d-flex container align-items-center justify-content-between">
 			<div class="">
-				<a th:href="@{/home}"> <img class="header__logo" th:src="@{/assets/images/Amaterasu3_removebg2.png}" height="90px"
-						alt="">
+				<a th:href="@{/home}"> <img class="header__logo" th:src="@{/assets/images/Amaterasu3_removebg2.png}"
+						height="90px" alt="">
 				</a>
 			</div>
 			<nav class="header__menu">
@@ -15,7 +15,8 @@
 					<li class="nav-item m-1"><a class="nav-link text-dark nav-item__after" th:href="@{/home}"
 							style="font-weight: bold;">TRANG CHỦ</a></li>
 					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
-							class="nav-link text-dark" th:href="@{/brand}" style="font-weight: bold; color: #612f2c;">THƯƠNG
+							class="nav-link text-dark" th:href="@{/brand}"
+							style="font-weight: bold; color: #612f2c;">THƯƠNG
 							HIỆU</a></li>
 					<li class="nav-item m-1 position-relative header__item_3" onmouseover="add_li_hover(this), show()"
 						onmouseout="remove_li_hover(this), hide()"><a class="nav-link text-dark" th:href="@{/home}"
@@ -90,7 +91,7 @@
 				<div class="search p-3 col-md-4 position-relative">
 					<i class="fas fa-search icon-search"></i>
 					<div class="position-absolute input-search">
-						<form action="/search" method="get">
+						<form action="/searchByName" method="get">
 							<input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm">
 						</form>
 					</div>

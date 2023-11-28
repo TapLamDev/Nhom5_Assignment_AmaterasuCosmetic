@@ -62,7 +62,6 @@
 				<div class="carousel-item">
 					<img class="d-block w-100" th:src="@{/assets/images/pexels-beatrice-cornejo-3989775.jpg}"
 						height="800px" alt="Third slide">
-
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#demo" role="button" data-slide="prev"> <span
@@ -74,7 +73,7 @@
 	</div>
 
 	<div class="container mt-5">
-		<h3 class="text-center" style="color: #612f2c">SẢN PHẨM HOT</h3>
+		<h3 class="text-center" style="color: #612f2c">-- SẢN PHẨM HOT --</h3>
 		<div class="img-container">
 			<img th:src="@{/assets/images/icon-header.png}" alt="Icon header" class="img-fluid"
 				style="margin: 0 auto; display: block;">
@@ -87,70 +86,177 @@
 				<div class="row">
 					<div id="carouselExampleIndicators" class="carousel slide">
 						<div class="carousel-inner">
+							<!-- Các item của carousel -->
 							<div class="carousel-item active">
 								<div class="col-md-10">
 									<div class="row">
-										<th:forEach var="item" items="${item}" varStatus="status">
-											<th:if test="${status.index <= 5}">
-												<div class="col-md-4">
-													<a th:href="@{/detail}"> <img
-															th:src="@{/assets/images/${item.image}}" class="product-img"
-															alt="${item.name}">
-													</a>
-													<fmt:formatNumber var="roundedPrice" value="${item.price}"
-														type="number" maxFractionDigits="2" />
-													<h6 class="text-danger" style="margin-left: 70px;">Giá:
-														${roundedPrice} VNĐ</h6>
-													<h6 class="product__name" style="margin-left: 45px;"
-														th:text="*{name}">
-														${item.name}
-													</h6>
-												</div>
-											</th:if>
-											</th:forEach>
+										<div th:each="product, status : ${products}" varStatus="status"
+											th:if="${status.index <= 5}" class="col-md-4">
+											<!-- Nội dung của mỗi sản phẩm -->
+											<a th:href="@{'/detail/' + ${product.id}}">
+												<img th:src="@{'/assets/images/' + ${product.image}}"
+													class="product-img" alt="${product.name}">
+											</a>
+											<h6 class="text-danger" style="margin-left: 70px;">Giá:
+												<span class="formatted-price" th:text="${product.price}"></span>
+												VNĐ
+											</h6>
+											<h6 class="product__name" style="margin-left: 45px;"
+												th:text="${product.name}">
+											</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Các item khác của carousel -->
+							<div class="carousel-item">
+								<div class="col-md-9" style="margin-left: 50px">
+									<div class="row">
+										<div th:each="product, status : ${products}"
+											th:if="${status.index >= 6 && status.index <= 11}" class="col-md-4">
+											<!-- Nội dung của mỗi sản phẩm -->
+											<a th:href="@{'/detail/' + ${product.id}}">
+												<img th:src="@{'/assets/images/' + ${product.image}}"
+													class="product-img" alt="${product.name}">
+											</a>
+											<h6 class="text-danger" style="margin-left: 50px;">Giá:
+												<span class="formatted-price" th:text="${product.price}"></span>
+												VNĐ
+											</h6>
+											<h6 class="product__name" style="margin-left: 45px;"
+												th:text="${product.name}">
+											</h6>
+										</div>
 									</div>
 								</div>
 							</div>
 							<div class="carousel-item">
 								<div class="col-md-9" style="margin-left: 50px">
 									<div class="row">
-										<th:forEach var="item" items="${item}" varStatus="status">
-											<th:if test="${status.index >= 6}">
-												<div class="col-md-4">
-													<a th:href="@{/views/detail/${item.id}}"> <img
-															th:src="@{/assets/images/${item.image}}" class="product-img"
-															alt="${item.name}">
-													</a>
-													<fmt:formatNumber var="roundedPrice" value="${item.price}"
-														type="number" maxFractionDigits="2" />
-													<h6 class="text-danger" style="margin-left: 50px;">Giá:
-														${roundedPrice} VNĐ</h6>
-													<h6 class="product__name" style="margin-left: 45px;">${item.name}
-													</h6>
-												</div>
-											</th:if>
-										</th:forEach>
+										<div th:each="product, status : ${products}" th:if="${status.index > 11}"
+											class="col-md-4">
+											<!-- Nội dung của mỗi sản phẩm -->
+											<a th:href="@{'/detail/' + ${product.id}}">
+												<img th:src="@{'/assets/images/' + ${product.image}}"
+													class="product-img" alt="${product.name}">
+											</a>
+											<h6 class="text-danger" style="margin-left: 50px;">Giá:
+												<span class="formatted-price" th:text="${product.price}"></span>
+												VNĐ
+											</h6>
+											<h6 class="product__name" style="margin-left: 45px;"
+												th:text="${product.name}">
+											</h6>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						<!-- Nút điều khiển carousel -->
 						<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
 							data-bs-slide="prev">
 							<span class="carousel-control-prev-icon" aria-hidden="true"
 								style="background-color: red;"></span> <span class="visually-hidden">Previous</span>
 						</button>
-						<button id=" nextButton" class="carousel-control-next" type="button"
+						<button id="nextButton" class="carousel-control-next" type="button"
 							data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
 							<span class="carousel-control-next-icon" aria-hidden="true"
 								style="background-color: red;"></span> <span>Next</span>
 						</button>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
+	<img th:src="@{/assets/images/banner-giua-trang-2.jpg}" alt="Icon header" class="img-fluid"
+		style="margin: 0 auto; display: block;">
+	<div class="container mt-5">
+		<h3 class="text-center" style="color: #612f2c">-- SẢN PHẨM BÁN CHẠY --</h3>
+		<div class="img-container">
+			<img th:src="@{/assets/images/icon-header.png}" alt="Icon header" class="img-fluid"
+				style="margin: 0 auto; display: block;">
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img th:src="@{/assets/images/banner_menu_1.jpg}" alt="QC" class="img-fluid" style="margin-top: 200px;">
+			</div>
+			<div class="col-md-9">
+				<div class="row">
+					<div id="carouselExampleIndicators" class="carousel slide">
+						<div class="carousel-inner">
+							<!-- Các item của carousel -->
+							<div class="carousel-item active">
+								<div class="col-md-10">
+									<div class="row">
+										<div th:each="product, status : ${products}" varStatus="status"
+											th:if="${status.index >= 6 && status.index <= 11}" class="col-md-4">
+											<!-- Nội dung của mỗi sản phẩm -->
+											<a th:href="@{'/detail/' + ${product.id}}">
+												<img th:src="@{'/assets/images/' + ${product.image}}"
+													class="product-img" alt="${product.name}">
+											</a>
+											<h6 class="text-danger" style="margin-left: 70px;">Giá:
+												<span class="formatted-price" th:text="${product.price}"></span>
+												VNĐ
+											</h6>
+											<h6 class="product__name" style="margin-left: 45px;"
+												th:text="${product.name}">
+											</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<img th:src="@{/assets/images/banner-giua-trang_1.jpg}" alt="Icon header" class="img-fluid"
+		style="margin: 0 auto; display: block;">
+	<div class="container mt-5">
+		<h3 class="text-center" style="color: #612f2c">-- SẢN PHẨM KHUYẾN MÃI --</h3>
+		<div class="img-container">
+			<img th:src="@{/assets/images/icon-header.png}" alt="Icon header" class="img-fluid"
+				style="margin: 0 auto; display: block;">
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img th:src="@{/assets/images/banner_menu_1.jpg}" alt="QC" class="img-fluid" style="margin-top: 200px;">
+			</div>
+			<div class="col-md-9">
+				<div class="row">
+					<div id="carouselExampleIndicators" class="carousel slide">
+						<div class="carousel-inner">
+							<!-- Các item của carousel -->
+							<div class="carousel-item active">
+								<div class="col-md-10">
+									<div class="row">
+										<div th:each="product, status : ${products}" varStatus="status"
+											th:if="${status.index > 11}" class="col-md-4">
+											<!-- Nội dung của mỗi sản phẩm -->
+											<a th:href="@{'/detail/' + ${product.id}}">
+												<img th:src="@{'/assets/images/' + ${product.image}}"
+													class="product-img" alt="${product.name}">
+											</a>
+											<h6 class="text-danger" style="margin-left: 70px;">Giá:
+												<span class="formatted-price" th:text="${product.price}"></span>
+												VNĐ
+											</h6>
+											<h6 class="product__name" style="margin-left: 45px;"
+												th:text="${product.name}">
+											</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- <div class="carousel-indicators" style="text-align: center;">
 		<button type="button" data-bs-target="#carouselExampleIndicators"
 			data-bs-slide-to="0" class="active" aria-current="true"
@@ -199,6 +305,20 @@
 				currentItem.classList.remove('active');
 				nextItem.classList.add('active');
 			}
+		});
+	</script>
+
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			// Lặp qua tất cả các phần tử có class là "formatted-price"
+			$(".formatted-price").each(function () {
+				// Lấy nội dung hiện tại của phần tử
+				var price = $(this).text();
+				// Định dạng giá thành dạng có dấu chấm
+				var formattedPrice = parseFloat(price).toLocaleString("vi-VN");
+				// Đặt lại nội dung của phần tử với giá đã được định dạng
+				$(this).text(formattedPrice);
+			});
 		});
 	</script>
 </body>

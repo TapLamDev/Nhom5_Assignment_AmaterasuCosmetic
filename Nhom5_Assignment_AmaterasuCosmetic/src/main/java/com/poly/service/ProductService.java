@@ -9,15 +9,17 @@ public interface ProductService {
 
 	List<Product> findAll();
 	
-	Product findById(Integer id);
+	Product findById(int id);
 	
-	List<Product> findByCategoryId(String cid);
+	List<Product> findByCategoryId(int cid);
 	
 	Product create(Product product);
 	
 	Product update(Product product);
 
-	void delete(Integer id);
+	void delete(int id);
+
+
 
 	
 	

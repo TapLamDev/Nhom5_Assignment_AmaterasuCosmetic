@@ -13,6 +13,13 @@
 <title>Atemarasu-Admin</title>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
 <!-- Custom CSS -->
 <link th:href="@{/assets/extra-libs/c3/c3.min.css}" rel="stylesheet">
 <link th:href="@{/assets/libs/chartist/dist/chartist.min.css}"
@@ -24,75 +31,154 @@
 <link th:href="@{/dist/css/style.min.css}" rel="stylesheet">
 </head>
 
-<body>
+<body ng-app="app" ng-controller="product-ctrl"
+	ng-init="initializeEditPage()">
 
 	<span th:insert="~{Admin/common/header.html}"></span>
 	<span th:insert="~{Admin/common/menu.html}"></span>
-
 	<div class="page-wrapper">
 		<div class="content-wrapper">
 			<div class="row">
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">Quản lý sản phẩm</h4>
-							<p class="card-description">Thêm mới, cập nhật và xoá sản
-								phẩm</p>
-							<div id="successMessage" style="color: red; display: none;"></div>
-							<form action="/admin/products" method="Post"
-								class="form-horizontal" modelAttribute="item"
-								enctype="multipart/form-data">
-								<div class="row">
-									<div class="col-sm-4">
-										<img class="border border-5" alt="" th:src="@{/assets/images/son-kem-ly-black-rouge-ver1.jpg}">
-									</div>
-									<div class="col-sm-8">
+							<nav>
+								<div class="nav nav-tabs" id="nav-tab" role="tablist">
+									<button class="nav-link active" id="nav-home-tab"
+										data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+										role="tab" aria-controls="nav-home" aria-selected="true">Edit</button>
+									<button class="nav-link" id="nav-profile-tab"
+										data-bs-toggle="tab" data-bs-target="#nav-profile"
+										type="button" role="tab" aria-controls="nav-profile"
+										aria-selected="false">List</button>
+								</div>
+							</nav>
+							<div class="tab-content" id="nav-tabContent">
+								<div class="tab-pane fade show active" id="nav-home"
+									role="tabpanel" aria-labelledby="nav-home-tab">
+									<h4 class="card-title">Quản lý sản phẩm</h4>
+									<p class="card-description">Thêm mới, cập nhật và xoá sản
+										phẩm</p>
+									<div id="successMessage" style="color: red; display: none;"></div>
+									<form>
 										<div class="row">
-											<div class="col">
-												<span>ID sản phẩm:</span> <input type="text" class="form-control" placeholder="ID"
-													aria-label="First name"><br> 
-													<span>Tên sản phẩm:</span> <input
-													type="text" class="form-control" placeholder="Tên sản phẩm"
-													aria-label="First name"><br> 
-													<span>Giá sản phẩm:</span> <input
-													type="text" class="form-control" placeholder="Giá sản phẩm"
-													aria-label="First name"><br>
-												<div class="">
-													<label class="">Tình trạng: </label>
-													<div class="">
-														<input type="radio" value="true" /> Active <input
-															type="radio" value="true" /> Inactive
+											<div class="col-sm-4">
+												<img style="height: 450px; width: 450px;"
+													class="border border-5"
+													ng-src="{{'/assets/images/product/' + form.image}}">
+											</div>
+											<div class="col-sm-8">
+												<div class="row">
+													<div class="col">
+														<span>ID sản phẩm:</span> <input ng-model="form.id"
+															type="text" class="form-control" placeholder="ID"
+															disabled="true"><br> <span>Tên sản
+															phẩm:</span> <input ng-model="form.name" type="text"
+															class="form-control" placeholder="Tên sản phẩm"><br>
+														<span>Giá sản phẩm:</span> <input ng-model="form.price"
+															type="text" class="form-control"
+															placeholder="Giá sản phẩm"><br>
+														<div class="">
+															<label class="">Tình trạng: </label>
+															<div class="">
+																<input ng-model="form.available" type="radio"
+																	ng-value="true" /> Active <input
+																	ng-model="form.available" type="radio" ng-value="false" />
+																Inactive
+															</div>
+														</div>
+														<br>
+														<div class="">
+															<span>Hình ảnh: </span> <input type="file" id="image"
+																class="form-control w-50"
+																onchange="angular.element(this).scope().imageChanged(this.files)" />
+														</div>
+
 													</div>
-												</div><br>
-												<div class="">
-													<span>Hình ảnh: </span> <input name="photo_file" type="file" accept="image"
-														class="form-control" />
+													<div class="col">
+														<span>Ngày tạo:</span><input ng-model="form.createDate"
+															type="date" class="form-control"><br> <span>Category:</span><select
+															ng-model="form.category.id" class="form-control">
+															<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+														</select><br> <span>Brand:</span><select
+															ng-model="form.brand.id" class="form-control">
+															<option ng-repeat="b in bras" ng-value="b.id">{{b.name}}</option>
+														</select><br> <span>Mô tả: </span>
+														<textarea rows="" cols="" class="form-control"
+															ng-model="form.describe"></textarea>
+														<span>Số lượng tồn kho: </span><input
+															ng-model="form.tonKho" class="form-control">
+													</div>
 												</div>
 
-											</div>
-											<div class="col">
-												<span>Ngày tạo:</span><input type="date" class="form-control"><br>
-												<span>Category:</span><select class="form-control">
-													<option>Chọn loại sản phẩm</option>
-												</select><br>
-												<span>Brand:</span><select class="form-control">
-													<option>Chọn thương hiệu</option>
-												</select><br>
-												<span>Mô tả: </span><textarea rows="" cols="" class="form-control"></textarea>
-												<span>Số lượng tồn kho: </span><input class="form-control">
+												<div>
+													<hr>
+													<div class="">
+														<button ng-click="create()"
+															class="btn btn-outline-primary mx-2">
+															<i class="bi bi-plus-circle"></i> Create
+														</button>
+														<button ng-click="update()"
+															class="btn btn-outline-success mx-2">
+															<i class="bi bi-upload"></i> Update
+														</button>
+														<button ng-click="delete(form)"
+															class="btn btn-outline-danger mx-2">
+															<i class="bi bi-x-circle"></i> Delete
+														</button>
+														<button ng-click="reset()"
+															class="btn btn-outline-light mx-2">
+															<i class="bi bi-arrow-clockwise"></i> Reset
+														</button>
+													</div>
+												</div>
 											</div>
 										</div>
-										<div><hr>
-											<div class="">
-									<button type="submit" class="btn btn-outline-primary mx-2"><i class="bi bi-plus-circle"></i> Create</button>
-									<button type="submit" class="btn btn-outline-success mx-2"><i class="bi bi-plus-circle"></i> Update</button>
-									<a class="btn btn-outline-danger mx-2"><i class="bi bi-x-circle"></i> Delete</a> 
-									<a class="btn btn-outline-light mx-2"><i class="bi bi-arrow-clockwise"></i> Reset</a>
+									</form>
 								</div>
-										</div>
-									</div>
+								<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+									aria-labelledby="nav-profile-tab">
+									<h4>Danh sách sản phẩm</h4>
+									<table class="table table-bordered" border-collapse="collapse">
+										<thead>
+											<tr>
+												<th scope="col">Action</th>
+												<th scope="col">Id</th>
+												<th scope="col">Tên</th>
+												<th scope="col">Giá</th>
+												<th scope="col">Ngày tạo</th>
+												<th scope="col">Loại</th>
+												<th scope="col">Thương hiệu</th>
+												<th scope="col">Tình trạng</th>
+												<th scope="col">Số lượng tồn kho</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in items">
+												<td>
+													<button ng-click="edit(item)"
+														class="btn btn-outline-primary">
+														<i class="bi bi-pencil"></i> Edit
+													</button> <br>
+													<button ng-click="delete(item)"
+														class="btn btn-outline-danger">
+														<i class="bi bi-x-circle"></i>Delete
+													</button>
+												</td>
+												<td>{{item.id}}</td>
+												<td>{{item.name}}</td>
+												<td>{{item.price}}VNĐ</td>
+												<td>{{item.createDate}}</td>
+												<td>{{item.category.name}}</td>
+												<td>{{item.brand.name}}</td>
+												<td><span style="color: green;">Is active</span> <span
+													style="color: red;">Stop active</span></td>
+												<td>{{item.tonKho}}</td>
+											</tr>
+										</tbody>
+									</table>
 								</div>
-							</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -123,6 +209,11 @@
 	<script
 		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
 	<script th:src="@{/dist/js/pages/dashboards/dashboard1.min.js}"></script>
+	<script th:src="@{/js/product.js}"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

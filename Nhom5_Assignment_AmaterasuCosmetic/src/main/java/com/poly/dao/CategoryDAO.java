@@ -8,7 +8,7 @@ import com.poly.entity.Category;
 
 public interface CategoryDAO extends JpaRepository<Category, Integer>{
 	
-	@Query("SELECT count(o) FROM Category o")
-	Integer getCount();
+//	@Query("SELECT count(o) FROM Category o")
+//	Integer getCount();
 	
 }

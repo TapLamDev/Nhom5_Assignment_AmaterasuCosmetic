@@ -1,4 +1,4 @@
-package com.poly.rest.controller;
+package com.poly.rest;
 
 import java.io.File;
 
@@ -25,15 +25,13 @@ public class UploadRestController {
 	UploadService uploadService;
 	
 	@PostMapping("/rest/upload/{folder}")
-	public JsonNode upload(@PathParam("file") MultipartFile file,@PathVariable("folde") String folder) {
+	public JsonNode upload(@PathParam("file") MultipartFile file,@PathVariable("folder") String folder) {
 		File saveFile = uploadService.save(file,folder);
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode node = mapper.createObjectNode();
 		node.put("name", saveFile.getName());
 		node.put("size", saveFile.length());
 		return node;
-		
-		
 		
 	}
 	

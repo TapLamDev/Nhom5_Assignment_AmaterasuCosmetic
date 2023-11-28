@@ -12,37 +12,37 @@ import com.poly.dao.ProductDAO;
 
 @Controller
 public class HomeController {
-	@Autowired
-	ProductDAO dao;
+//	@Autowired
+//	ProductDAO dao;
+//
+//	@GetMapping("/")
+//	public String homeIndex(Model model) {
+//		return "User/index";
+//	}
 
-	@GetMapping("/")
-	public String homeIndex(Model model) {
-		return "User/index";
-	}
-
-	@GetMapping("/home")
-	public String home() {
-		return "User/index";
-	}
-
-	@GetMapping("/detail")
-	public String detail() {
-		return "User/detail";
-	}
-
-	@GetMapping("/search")
-	public String search() {
-		return "User/search";
-	}
-
-	@GetMapping("/about")
-	public String about() {
-		return "User/about";
-	}
-
-	@GetMapping("/contact")
-	public String contact() {
-		return "User/contact";
-	}
+//	@GetMapping("/home")
+//	public String home() {
+//		return "User/index";
+//	}
+//
+//	@GetMapping("/detail")
+//	public String detail() {
+//		return "User/detail";
+//	}
+//
+//	@GetMapping("/search")
+//	public String search() {
+//		return "User/search";
+//	}
+//
+//	@GetMapping("/about")
+//	public String about() {
+//		return "User/about";
+//	}
+//
+//	@GetMapping("/contact")
+//	public String contact() {
+//		return "User/contact";
+//	}
 
 }

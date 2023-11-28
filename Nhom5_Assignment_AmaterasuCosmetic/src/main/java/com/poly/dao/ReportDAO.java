@@ -10,10 +10,10 @@ import com.poly.entity.Report;
 
 public interface ReportDAO extends JpaRepository <Product,Integer>{
 
-	@Query("SELECT new Report(o.category, sum(o.price), count(o)) " + " FROM Product o " 
-		     + " GROUP BY o.category"
-		     + " ORDER BY sum(o.price) DESC")
-		List<Report> getInventoryByCategorys();
+//	@Query("SELECT new Report(o.category, sum(o.price), count(o)) " + " FROM Product o " 
+//		     + " GROUP BY o.category"
+//		     + " ORDER BY sum(o.price) DESC")
+//		List<Report> getInventoryByCategorys();
 
 	
 }

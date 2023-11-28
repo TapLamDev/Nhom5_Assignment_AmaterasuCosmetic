@@ -13,20 +13,20 @@ import org.springframework.data.jpa.repository.Query;
 import com.poly.entity.Product;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
-
-	// Định nghĩa phương thức để phân trang và sắp xếp
-    Page<Product> findAll(Pageable pageable);
-
-    
-    @Query("SELECT count(o) FROM Product o")
-	Integer getCount();
-    
-    @Query("SELECT p FROM Product p WHERE p.name LIKE %:keyword%")
-
-
-	List<Product> findByName(String keyword);
-
-
-	List<Product> findByCategoryId(String cid);
+//
+//	// Định nghĩa phương thức để phân trang và sắp xếp
+//    Page<Product> findAll(Pageable pageable);
+//
+//    
+//    @Query("SELECT count(o) FROM Product o")
+//	Integer getCount();
+//    
+//    @Query("SELECT p FROM Product p WHERE p.name LIKE %:keyword%")
+//
+//
+//	List<Product> findByName(String keyword);
+//
+//
+//	List<Product> findByCategoryId(String cid);
 
 }

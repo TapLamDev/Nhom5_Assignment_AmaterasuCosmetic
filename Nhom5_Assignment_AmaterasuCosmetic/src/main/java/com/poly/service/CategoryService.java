@@ -9,13 +9,14 @@ public interface CategoryService {
 
 	List<Category> findAll();
 	
-	Category findById(Integer id);
+	Category findById(int id);
 	
-	List<Category> findByCategoryId(String cid);
+	List<Category> findByCategoryId(int cid);
 	
 	Category create(Category category);
 	
 	Category update(Category category);
 	
+	void delete(int id);
 	
 }

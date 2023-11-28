@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -27,6 +29,7 @@ public class Brand implements Serializable {
 	String name;
 	@Column(columnDefinition = "nvarchar(max)")
 	String image;
+	@JsonIgnore
 	@OneToMany(mappedBy = "brand")
 	List<Product> products;
 

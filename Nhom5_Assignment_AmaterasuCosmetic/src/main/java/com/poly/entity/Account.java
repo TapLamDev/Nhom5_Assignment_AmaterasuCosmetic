@@ -2,7 +2,6 @@ package com.poly.entity;
 
 import java.io.Serializable;
 
-
 import java.util.Date;
 
 import org.springframework.validation.annotation.Validated;
@@ -35,66 +34,62 @@ import lombok.NoArgsConstructor;
 @Table(name = "Accounts")
 public class Account implements Serializable {
 
-	 	@Id
-	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    private Integer id;
+	/* @NotBlank(message = "Vui lòng nhập username") */
+	@Id
+	@Column(name = "Tên người dùng")
+	private String username;
 
-		/* @NotBlank(message = "Vui lòng nhập username") */
-	    @Column(name = "Tên người dùng")
-	    private String username;
+	/* @NotBlank(message = "Vui lòng nhập password") */
+	@Column(name = "Mật khẩu")
+	private String password;
 
-		/* @NotBlank(message = "Vui lòng nhập password") */
-	    @Column(name = "Mật khẩu")
-	    private String password;
+	@Column(columnDefinition = "nvarchar(max)", name = "Họ và tên")
+	/* @NotEmpty(message = "Vui lòng nhập họ tên") */
+	private String fullname;
 
-	    @Column(columnDefinition = "nvarchar(max)", name = "Họ và tên")
-		/* @NotEmpty(message = "Vui lòng nhập họ tên") */
-	    private String fullname;
+	/*
+	 * @NotBlank(message = "Vui lòng nhập số điện thoại")
+	 * 
+	 * @Size(min = 10, max = 10, message = "Số điện thoại phải có 10 chữ số")
+	 * 
+	 */
+	// @Pattern(regexp = "^[0-9]{10}$", message = "Số điện thoại không hợp lệ")
+	@Column(name = "Số điện thoại")
+	private String numberPhone;
 
-		/*
-		 * @NotBlank(message = "Vui lòng nhập số điện thoại")
-		 * 
-		 * @Size(min = 10, max = 10, message = "Số điện thoại phải có 10 chữ số")
-		 * 
-		 */
-	   // @Pattern(regexp = "^[0-9]{10}$", message = "Số điện thoại không hợp lệ") 
-	    @Column(name = "Số điện thoại")
-	    private String numberPhone;
+	/*
+	 * @Size(min = 12, max = 12, message = "Căn cước công dân phải có đủ 12 số")
+	 * 
+	 * @Pattern(regexp = "^[0-9]{12}$", message =
+	 * "Căn cước công dân không được chứa chữ")
+	 */
+	@Column(name = "Căn cước công dân")
+	private String CCCD;
 
-	   
-		/*
-		 * @Size(min = 12, max = 12, message = "Căn cước công dân phải có đủ 12 số")
-		 * 
-		 * @Pattern(regexp = "^[0-9]{12}$", message =
-		 * "Căn cước công dân không được chứa chữ")
-		 */ 
-	    @Column(name = "Căn cước công dân")
-	    private String CCCD;
+	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
+	@Column(columnDefinition = "nvarchar(max)", name = "Địa chỉ")
+	private String address;
 
-		/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
-	    @Column(columnDefinition = "nvarchar(max)",name = "Địa chỉ")
-	    private String address;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "Sinh nhật")
+	private Date birthDay = new Date();
 
-	    @Temporal(TemporalType.DATE)
-	    @Column(name = "Sinh nhật")
-	    private Date birthDay = new Date();
+	/*
+	 * @NotBlank(message = "Vui lòng nhập email")
+	 * 
+	 * @Email(message = "Email sai định dạng")
+	 */
+	@Column(name = "Email")
+	private String email;
 
-		/*
-		 * @NotBlank(message = "Vui lòng nhập email")
-		 * 
-		 * @Email(message = "Email sai định dạng")
-		 */
-	    @Column(name = "Email")
-	    private String email;
+	/* @NotNull(message = "Trạng thái hoạt động không được bỏ trống") */
+	@Column(name = "Trạng thái hoạt động")
+	private boolean activated;
 
-		/* @NotNull(message = "Trạng thái hoạt động không được bỏ trống") */
-	    @Column(name = "Trạng thái hoạt động")
-	    private boolean activated;
+	/* @NotNull(message = "Role không được bỏ trống") */
+	@Column(name = "Role")
+	private boolean admin;
 
-		/* @NotNull(message = "Role không được bỏ trống") */
-	    @Column(name = "Role")
-	    private boolean admin;
-
-	    @Column(name = "Hình")
-	    private String image;
+	@Column(name = "Hình")
+	private String image;
 }

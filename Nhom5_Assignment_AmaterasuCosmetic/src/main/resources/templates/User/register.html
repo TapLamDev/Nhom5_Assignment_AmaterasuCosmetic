@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Đăng nhập</title>
+	<title>Đăng ký</title>
 	<link rel="stylesheet" th:href="@{/assets/css/login.css}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<form action="/register" method="POST" modelAttribute="ac">
+	<form action="/register" method="post" modelAttribute="acc">
 		<div class="form-control">
 			<label for="username">Tên người dùng</label>
 			<input path="username" type="text" name="username" id="username" class="form-control" />
@@ -25,9 +25,10 @@
 			<errors path="password" style="font-size:15px; color:red;" />
 		</div>
 		<div class="form-control">
-			<label for="cfmpassword">Xác nhận mật khẩu</label> <input type="password" id="cfmpassword"
-				name="cfmpassword" />
-			<p>${messageCfmPassword}</p>
+			<label for="cfmpassword">Xác nhận mật khẩu</label>
+			<input onchange="register()" type="password" id="cfmpassword" name="cfmpassword" />
+
+			<p id="messageCfmPassword">${messageCfmPassword}</p>
 		</div>
 		<div class="form-control">
 			<label for="cfmpassword">Họ và tên</label>
@@ -54,7 +55,21 @@
 			<errors path="email" style="font-size:15px; color:red;" />
 		</div>
 		<button type="submit" value="submit">Đăng ký</button>
+		<!--<button onclick="register()">Đăng ký</button>-->
 	</form>
+
+	<script>
+		document.getElementById("messageCfmPassword").textContent = "";
+		function register() {
+			const pass = document.getElementById("password").value;
+			const cfmpass = document.getElementById("cfmpassword").value;
+			if (pass !== cfmpass) {
+				document.getElementById("messageCfmPassword").textContent = "Mật khẩu xác nhận phải giống với mật khẩu.";
+			} else {
+				document.getElementById("messageCfmPassword").textContent = "";
+			}
+		}
+	</script>
 </body>
 
 </html>

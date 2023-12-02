@@ -7,32 +7,38 @@ app.controller("product-ctrl", function($scope, $http) {
 
 	$scope.reset = function() {
 		$scope.form = {
+			createDate: new Date(),
 			image: 'uploadimage.png'
 		};
 	}
 
 	$scope.initialize = function() {
-        //load product
+		//load product
 		$http.get("/rest/products").then(resp => {
 			$scope.items = resp.data;
+			$scope.items.forEach(item => {
+				item.createDate = new Date(item.createDate)
+			});
 			console.log("Success", resp);
 		});
-
-        $http.get("/rest/categories").then(resp => {
+	
+		$http.get("/rest/categories").then(resp => {
 			$scope.cates = resp.data;
 			console.log("Success", resp);
 		});
-
-        $http.get("/rest/brands").then(resp => {
+	
+		$http.get("/rest/brands").then(resp => {
 			$scope.bras = resp.data;
 			console.log("Success", resp);
 		})
 	};
+	
 
 	$scope.edit = function(item) {
 		$scope.form = angular.copy(item);
-        $(".nav-tabs button:eq(0)").tab('show')
+		$(".nav-tabs button:eq(0)").tab('show')
 	}
+	
 
 
 	$scope.create = function() {

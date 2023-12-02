@@ -36,14 +36,12 @@ public class Account implements Serializable {
 
 	/* @NotBlank(message = "Vui lòng nhập username") */
 	@Id
-	@Column(name = "Tên người dùng")
 	private String username;
 
 	/* @NotBlank(message = "Vui lòng nhập password") */
-	@Column(name = "Mật khẩu")
 	private String password;
 
-	@Column(columnDefinition = "nvarchar(max)", name = "Họ và tên")
+	@Column(columnDefinition = "nvarchar(max)")
 	/* @NotEmpty(message = "Vui lòng nhập họ tên") */
 	private String fullname;
 
@@ -54,7 +52,6 @@ public class Account implements Serializable {
 	 * 
 	 */
 	// @Pattern(regexp = "^[0-9]{10}$", message = "Số điện thoại không hợp lệ")
-	@Column(name = "Số điện thoại")
 	private String numberPhone;
 
 	/*
@@ -63,15 +60,13 @@ public class Account implements Serializable {
 	 * @Pattern(regexp = "^[0-9]{12}$", message =
 	 * "Căn cước công dân không được chứa chữ")
 	 */
-	@Column(name = "Căn cước công dân")
 	private String CCCD;
 
 	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
-	@Column(columnDefinition = "nvarchar(max)", name = "Địa chỉ")
+	@Column(columnDefinition = "nvarchar(max)")
 	private String address;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "Sinh nhật")
 	private Date birthDay = new Date();
 
 	/*
@@ -79,17 +74,12 @@ public class Account implements Serializable {
 	 * 
 	 * @Email(message = "Email sai định dạng")
 	 */
-	@Column(name = "Email")
+
 	private String email;
-
 	/* @NotNull(message = "Trạng thái hoạt động không được bỏ trống") */
-	@Column(name = "Trạng thái hoạt động")
 	private boolean activated;
-
 	/* @NotNull(message = "Role không được bỏ trống") */
 	@Column(name = "Role")
 	private boolean admin;
-
-	@Column(name = "Hình")
 	private String image;
 }

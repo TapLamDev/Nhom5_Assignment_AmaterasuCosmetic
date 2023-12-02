@@ -101,7 +101,7 @@
 								<div th:text="${product.tonKho}"></div>
 							</div>
 							<hr>
-							<a th:href="@{/cart/add/{id}(id=${product.id}, price=${product.price})}"
+							<a th:href="@{'/cart/' + ${product.id}}"
 								class="btn btn-primary"
 								style="background-color: #EC6090; border: none; margin-top: 10px">Thêm vào giỏ hàng</a>
 							<a th:href="@{/cart/add/{id}(id=${product.id}, price=${product.price}, action=mua-ngay)}"

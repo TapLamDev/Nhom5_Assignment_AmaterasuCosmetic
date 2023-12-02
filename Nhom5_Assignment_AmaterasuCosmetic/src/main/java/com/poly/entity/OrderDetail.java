@@ -13,7 +13,6 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @SuppressWarnings("serial")
-@Data
 @Entity 
 @Table(name = "Orderdetails")
 public class OrderDetail  implements Serializable{

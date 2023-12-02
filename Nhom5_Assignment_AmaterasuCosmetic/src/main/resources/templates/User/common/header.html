@@ -126,7 +126,7 @@
 					</div>
 				</div>
 				<div class="bag p-3 col-md-4 position-relative">
-					<a th:href="@{/cart}"><i class="fas fa-shopping-bag icon-bag"><sup>${Count}</sup></i></a>
+					<a th:href="@{/cart}"><i class="fas fa-shopping-bag icon-bag"><sup th:text="${count}"></sup></i></a>
 					<c:if test="${Count == 0 }">
 						<div class="no_card position-absolute">
 							<figure class="border border">

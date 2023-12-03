@@ -29,7 +29,7 @@ public class CartController {
 		return "User/cart";
 	}
 
-	//Load sản phẩm zo form giỏ hàng
+	//Thêm vào giỏ hàng
 	@GetMapping("/cart/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		Product product = pdao.findById(id).get();
@@ -48,8 +48,9 @@ public class CartController {
 		return "redirect:/detail/{id}";
 	}
 	
+	//Mua ngay
 	@GetMapping("/cart/add/{id}")
-	public String cartItem(Model model, @PathVariable("id") Integer id) {
+	public String cartIted(Model model, @PathVariable("id") Integer id) {
 		Product product = pdao.findById(id).get();
 		model.addAttribute("products", product);
 		if (product != null) {

@@ -86,7 +86,18 @@ public class CartServiceImpl implements CartService {
 	public CartItem plus(int id) {
 	    CartItem cartItem = maps.get(id);
 	    int qty = cartItem.getQty();
-	    cartItem.setQty(qty + 1);
+	    int tonKho = cartItem.getTonKho();
+
+	    // Kiểm tra nếu số lượng đã đạt tối đa
+	    if (qty < tonKho) {
+	        cartItem.setQty(qty + 1);
+	    } else {
+	        // Nếu vượt quá số lượng tonkho, bạn có thể thực hiện xử lý hoặc thông báo tùy thuộc vào yêu cầu của bạn.
+	        // Ở đây, tôi đơn giản là không thay đổi giá trị qty nếu đã vượt quá giới hạn.
+	        // Bạn có thể thay đổi phần này tùy thuộc vào yêu cầu cụ thể của bạn.
+	        System.out.println("Số lượng đã vượt quá giới hạn.");
+	    }
+
 	    return cartItem;
 	}
 

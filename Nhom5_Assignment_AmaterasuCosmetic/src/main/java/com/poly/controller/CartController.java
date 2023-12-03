@@ -40,9 +40,29 @@ public class CartController {
 			item.setName(product.getName());
 			item.setImage(product.getImage());
 			item.setPrice(product.getPrice());
+			item.setTonKho(product.getTonKho());
 			item.setQty(1);
 			cartService.add(item);
 		}
+		model.addAttribute("message", "Sản phẩm đã được thêm vào giỏ hàng.");
+		return "redirect:/detail/{id}";
+	}
+	
+	@GetMapping("/cart/add/{id}")
+	public String cartItem(Model model, @PathVariable("id") Integer id) {
+		Product product = pdao.findById(id).get();
+		model.addAttribute("products", product);
+		if (product != null) {
+			CartItem item = new CartItem();
+			item.setId(product.getId());
+			item.setName(product.getName());
+			item.setImage(product.getImage());
+			item.setPrice(product.getPrice());
+			item.setTonKho(product.getTonKho());
+			item.setQty(1);
+			cartService.add(item);
+		}
+		model.addAttribute("message", "Sản phẩm đã được thêm vào giỏ hàng.");
 		return "redirect:/cart";
 	}
 
@@ -67,33 +87,9 @@ public class CartController {
 	    return "User/cart";
 	}
 
-	//CheckOut (Chưa code xong)
-	@GetMapping("cart/checkout")
-	public String CheckOut(Model model) {
-	    String roundedAmountUpdate = (String) model.getAttribute("roundedAmountUpdate");
-
-	    if (roundedAmountUpdate == null || roundedAmountUpdate.isEmpty()) {
-	    	model.addAttribute("products", cartService.getAllItems());
-	 	    model.addAttribute("count", cartService.gettotalCount());
-	 	    model.addAttribute("roundedAmount", cartService.getAmount());
-	        model.addAttribute("message", "Vui lòng chọn phương thức giao hàng trước khi thanh toán.");
-	        
-	        return "User/cart"; // Trả về trang giỏ hàng với thông báo
-	    }
-
-	    // Nếu roundedAmountUpdate đã được thiết lập, tiếp tục xử lý
-	    model.addAttribute("roundedAmount", cartService.getAmount());
-	    model.addAttribute("products", cartService.getAllItems());
-	    model.addAttribute("count", cartService.gettotalCount());
-	    model.addAttribute("roundedAmountUpdate", cartService.getAmountFast());
-
-	    return "User/cart";
-	}
-
-
 	//Tăng giá khi thêm số lượng sản phẩm
 	@GetMapping("/cart/update/{id}/plus") // annotation xử lí yêu cầu
-	public String plusQty(@PathVariable("id") int id) {
+	public String plusQty(@PathVariable("id") int id, Model model) {
 		cartService.plus(id);
 		return "redirect:/cart";
 	}
@@ -118,4 +114,27 @@ public class CartController {
 		cartService.clear();
 		return "redirect:/cart";
 	}
+	
+	//CheckOut (Chưa code xong)
+		@GetMapping("cart/checkout")
+		public String CheckOut(Model model) {
+		    String roundedAmountUpdate = (String) model.getAttribute("roundedAmountUpdate");
+
+		    if (roundedAmountUpdate == null || roundedAmountUpdate.isEmpty()) {
+		    	model.addAttribute("products", cartService.getAllItems());
+		 	    model.addAttribute("count", cartService.gettotalCount());
+		 	    model.addAttribute("roundedAmount", cartService.getAmount());
+		        model.addAttribute("message", "Vui lòng chọn phương thức giao hàng trước khi thanh toán.");
+		        
+		        return "User/cart"; // Trả về trang giỏ hàng với thông báo
+		    }
+
+		    // Nếu roundedAmountUpdate đã được thiết lập, tiếp tục xử lý
+		    model.addAttribute("roundedAmount", cartService.getAmount());
+		    model.addAttribute("products", cartService.getAllItems());
+		    model.addAttribute("count", cartService.gettotalCount());
+		    model.addAttribute("roundedAmountUpdate", cartService.getAmountFast());
+
+		    return "User/cart";
+		}
 }

@@ -39,7 +39,6 @@
 
 	<!-- content-->
 
-
 	<div class="container mt-5" style="margin-top: 50px; margin-bottom: 20px">
 		<h3 class="text-center" style="color: #612f2c">THÔNG TIN SẢN PHẨM</h3>
 		<div class="img-container">
@@ -82,12 +81,12 @@
 						</div>
 						<!-- Các thông tin khác về sản phẩm -->
 
-						<hr th:if="${product.available == false or product.tonKho <= 1}">
-						<hr>
-						<div style="display: flex;">
-							<div style="font-weight: bold; color:red;">Sản phẩm đang tạm hết hàng </div>
-						</div>
-						</hr>
+						<th:block th:if="${product.tonKho < 1}">
+							<hr>
+							<div style="display: flex;">
+								<div style="font-weight: bold; color: red;">Sản phẩm đang tạm hết hàng</div>
+							</div>
+						</th:block>
 
 						<th:block th:if="${product.available == true and product.tonKho > 1}">
 							<hr>
@@ -101,12 +100,18 @@
 								<div th:text="${product.tonKho}"></div>
 							</div>
 							<hr>
-							<a th:href="@{'/cart/' + ${product.id}}"
-								class="btn btn-primary"
+							<a th:href="@{'/cart/' + ${product.id}}" class="btn btn-primary addToCart"
 								style="background-color: #EC6090; border: none; margin-top: 10px">Thêm vào giỏ hàng</a>
-							<a th:href="@{/cart/add/{id}(id=${product.id}, price=${product.price}, action=mua-ngay)}"
+							<a th:href="@{'/cart/add/' + ${product.id}}"
 								class="btn btn-primary"
 								style="background-color: #EC6090; border: none; margin-top: 10px">Mua ngay</a>
+
+							<!-- Thêm mã JavaScript để hiển thị thông báo -->
+							<script>
+								document.querySelector('.addToCart').addEventListener('click', function () {
+									alert('Sản phẩm đã được thêm vào giỏ hàng thành công!');
+								});
+							</script>
 						</th:block>
 					</div>
 				</div>

@@ -94,7 +94,7 @@ public class CartServiceImpl implements CartService {
 	    } else {
 	        // Nếu vượt quá số lượng tonkho, bạn có thể thực hiện xử lý hoặc thông báo tùy thuộc vào yêu cầu của bạn.
 	        // Ở đây, tôi đơn giản là không thay đổi giá trị qty nếu đã vượt quá giới hạn.
-	        // Bạn có thể thay đổi phần này tùy thuộc vào yêu cầu cụ thể của bạn.
+	        // Bạn có thể thay đổi phần này tùy thuộc vào yêu cầu cụ thể của bạn..
 	        System.out.println("Số lượng đã vượt quá giới hạn.");
 	    }
 

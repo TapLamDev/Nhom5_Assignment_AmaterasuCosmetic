@@ -48,7 +48,7 @@ public class CartController {
 		return "redirect:/detail/{id}";
 	}
 	
-	//Mua ngay
+	//Mua ngay 
 	@GetMapping("/cart/add/{id}")
 	public String cartIted(Model model, @PathVariable("id") Integer id) {
 		Product product = pdao.findById(id).get();

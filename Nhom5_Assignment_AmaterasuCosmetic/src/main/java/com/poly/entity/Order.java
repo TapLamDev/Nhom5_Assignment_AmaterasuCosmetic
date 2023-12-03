@@ -34,24 +34,16 @@ public class Order  implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
 	
-	@Column(name = "Mã đơn hàng")
-	String code;
-	
+	String maDH;
 	@Temporal(TemporalType.DATE)
 	@Column(name = "Createdate")
 	Date createDate = new Date();
-	
-	@Column(name = "Số điện thoại người nhận")
 	String numberPhoneRecevier;
-	
-	@Column(name = "Địa chỉ người nhận")
 	String addressReceive;
 	
-	@Column(name = "Ghi chú")
-	String note;
+	String notes;
 	
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "Trạng thái")
 	StatusOrder status;
 	
 	@ManyToOne

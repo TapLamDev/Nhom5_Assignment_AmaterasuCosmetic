@@ -33,7 +33,22 @@ public class AccountController {
 	}
 
 	@PostMapping("/register")
-	public String register(@ModelAttribute Account account, Model model) {
+	public String register(@ModelAttribute Account acc, Model model) {
+		// Lấy giá trị từ dữ liệu biểu mẫu bằng đối tượng 'account'
+		String username = acc.getUsername();
+		String password = acc.getPassword();
+		String fullName = acc.getFullname();
+		String CCCD = acc.getCCCD();
+		String email = acc.getEmail();
+		
+		// Tạo một thực thể Account mới với dữ liệu đã trích xuất
+		Account newAccount = new Account();
+		newAccount.setUsername(username);
+		newAccount.setPassword(password);
+		newAccount.setFullname(fullName);
+		newAccount.setCCCD(CCCD);
+		newAccount.setEmail(email);
+		System.out.println(newAccount);
 		
 		return "redirect:/";
 	}

@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.poly.entity.Account;
 
-public interface AccountDao extends JpaRepository<Account, Integer> {
+public interface AccountDao extends JpaRepository<Account, String> {
 //	Account findByUsername(String username);
 //	
 //	@Query("SELECT o FROM Account o WHERE o.username = :username AND o.email = :email")

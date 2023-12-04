@@ -10,67 +10,82 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!--link agularjs-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
 </head>
 
-<body ng-app="app" ng-controller="category-ctrl">
-	<form action="/register" method="post" modelAttribute="acc">
+<body ng-app="app" ng-controller="register-ctrl">
+	<form action="/register" method="post" modelAttribute="account">
 		<div class="form-control">
 			<label for="username">Tên người dùng</label>
-			<input path="username" type="text" name="username" id="username" class="form-control" />
+			<input ng-model="form.username" path="username" type="text" name="username" id="username"
+				class="form-control" />
 			<form path="username" style="font-size:15px; color:red;" />
 		</div>
 		<div class="form-control">
 			<label for="password">Mật khẩu</label>
-			<input path="password" type="password" id="password" name="password" />
+			<input ng-model="form.password" path="password" type="password" id="password" name="password" />
 			<errors path="password" style="font-size:15px; color:red;" />
 		</div>
 		<div class="form-control">
 			<label for="cfmpassword">Xác nhận mật khẩu</label>
-			<input onchange="register()" type="password" id="cfmpassword" name="cfmpassword" />
+			<input type="password" id="cfmpassword" name="cfmpassword" />
+			<!--<th:block th:if="${check == true}">
+				<p id="messageCfmPassword">Mật khẩu không khớp!</p>
+			</th:block>-->
+			<p id="messageCfmPassword" style="display: none;">Mật khẩu không khớp!</p>
 
-			<p id="messageCfmPassword">${messageCfmPassword}</p>
 		</div>
 		<div class="form-control">
 			<label for="cfmpassword">Họ và tên</label>
-			<input path="fullname" type="text" id="fullName" name="fullname" />
+			<input ng-model="form.fullname" path="fullname" type="text" id="fullName" name="fullname" />
 			<errors path="fullname" style="font-size:15px; color:red;" />
 		</div>
 		<div class="form-control">
-			<label for="cfmpassword">Căn cước công dân</label>
-			<input path="CCCD" type="text" class="form-control" name="CCCD" />
+			<label for="cfmpassword">Số điện thoại</label>
+			<input ng-model="form.numberPhone" path="numberPhone" type="text" class="form-control" name="numberPhone" />
 			<errors path="CCCD" style="font-size:15px; color:red;" />
 		</div>
-		<div class="form-control">
+		<th:block th:if="false">
+			<div class="form-control">
+				<input ng-model="form.role" type="radio" name="role" value="false" />
+				<input ng-model="form.role" type="radio" name="role" value="true" />
+			</div>
+			<div th:block="myBlock" class="form-control">
+				<input ng-model="form.activated" type="radio" name="activated" value="true" checked /> <input
+					type="radio" name="activated" value="false" />
+			</div>
+		</th:block>
 
-			<input type="radio" name="role" value="false" checked hidden="true" />
-			<input type="radio" name="role" value="true" hidden="true" />
-		</div>
-		<div class="form-control">
-			<input type="radio" name="activated" value="true" checked hidden="true" /> <input type="radio"
-				name="activated" value="false" hidden="true" />
-		</div>
 		<div class="form-control">
 			<label for="cfmpassword">Email</label>
-			<input path="email" type="email" id="email" name="email" />
+			<input ng-model="form.email" path="email" type="email" id="email" name="email" />
 			<errors path="email" style="font-size:15px; color:red;" />
 		</div>
-		<button type="submit" value="submit">Đăng ký</button>
+		<button ng-click="create()" type="submit" value="submit">Đăng ký</button>
 		<!--<button onclick="register()">Đăng ký</button>-->
 	</form>
 
 	<script>
-		document.getElementById("messageCfmPassword").textContent = "";
-		function register() {
-			const pass = document.getElementById("password").value;
-			const cfmpass = document.getElementById("cfmpassword").value;
-			if (pass !== cfmpass) {
-				document.getElementById("messageCfmPassword").textContent = "Mật khẩu xác nhận phải giống với mật khẩu.";
+		//var check = false;
+
+		function cfmpw() {
+			const password = document.getElementById('password').value;
+			const confirmPassword = document.getElementById('cfmpassword').value;
+
+			if (password !== confirmPassword) {
+				messageCfmPassword.style.display = 'block';
+				//check = true;
 			} else {
-				document.getElementById("messageCfmPassword").textContent = "";
+				messageCfmPassword.style.display = 'none';
+				//check = false;
 			}
 		}
+
+		document.getElementById('password').addEventListener('keyup', cfmpw);
+		document.getElementById('cfmpassword').addEventListener('keyup', cfmpw);
 	</script>
-	
+
 	<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
 	<script th:src="@{/assets/libs/popper.js/dist/umd/popper.min.js}"></script>
 	<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
@@ -78,8 +93,7 @@
 	<!-- apps -->
 	<script th:src="@{/dist/js/app-style-switcher.js}"></script>
 	<script th:src="@{/dist/js/feather.min.js}"></script>
-	<script
-		th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+	<script th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
 	<script th:src="@{/dist/js/sidebarmenu.js}"></script>
 	<!--Custom JavaScript -->
 	<script th:src="@{/dist/js/custom.min.js}"></script>
@@ -87,12 +101,9 @@
 	<script th:src="@{/assets/extra-libs/c3/d3.min.js}"></script>
 	<script th:src="@{/assets/extra-libs/c3/c3.min.js}"></script>
 	<script th:src="@{/assets/libs/chartist/dist/chartist.min.js}"></script>
-	<script
-		th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
-	<script
-		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
-	<script
-		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
+	<script th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
+	<script th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
+	<script th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
 	<script th:src="@{/dist/js/pages/dashboards/dashboard1.min.js}"></script>
 	<script th:src="@{/js/register.js}"></script>
 </body>

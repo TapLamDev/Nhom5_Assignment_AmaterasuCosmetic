@@ -19,9 +19,9 @@ app.controller("register-ctrl", function($scope, $http) {
 		$http.post('/rest/register', item).then(resp => {
 			$scope.items.push(resp.data);
 			$scope.reset();
-			alert("Tạo tài khoản mới thành công");
+			alert("Tạo tài khoản mới thành công!");
 		}).catch(error => {
-			alert("Lỗi thêm mới!");
+			alert("Tạo tài khoản không thành công!");
 			console.log("Error", error);
 		});
 	}

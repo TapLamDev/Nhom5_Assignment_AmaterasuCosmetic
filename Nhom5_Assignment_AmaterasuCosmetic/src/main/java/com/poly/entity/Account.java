@@ -60,11 +60,10 @@ public class Account implements Serializable {
 	/*
 	 * @Size(min = 12, max = 12, message = "Căn cước công dân phải có đủ 12 số")
 	 * 
-	 * @Pattern(regexp = "^[0-9]{12}$", message =
-	 * "Căn cước công dân không được chứa chữ")
+	 * @Pattern(regexp = "^[0-9]{12}$", message = "Căn cước công dân không được chứa chữ")
 	 */
-	@Column(name = "Căn cước công dân")
-	private String CCCD;
+//	@Column(name = "Căn cước công dân")
+//	private String CCCD;
 
 	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
 	@Column(columnDefinition = "nvarchar(max)", name = "Địa chỉ")

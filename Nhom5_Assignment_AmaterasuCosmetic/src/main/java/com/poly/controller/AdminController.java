@@ -51,4 +51,9 @@ public class AdminController {
 	public String showProductPage(Model model) {
 		return "Admin/product/products";
 	}
+	
+	@GetMapping("/admin/orders")
+	public String showOrderPage(Model model) {
+		return "Admin/order/orders";
+	}
 }

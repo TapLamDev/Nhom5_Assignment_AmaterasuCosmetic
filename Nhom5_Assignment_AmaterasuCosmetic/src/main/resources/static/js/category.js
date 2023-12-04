@@ -38,7 +38,7 @@ app.controller("category-ctrl", function($scope, $http) {
 		$http.put('/rest/categories/' + item.id, item).then(resp => {
 			var index = $scope.items.findIndex(p => p.id == item.id);
 			$scope.items[index] = item;
-			alert("Cập nhật thương hiệu thành công");
+			alert("Cập nhật Category thành công");
 		}).catch(error => {
 			alert("Lỗi cập nhật!");
 			console.log("Error", error);
@@ -57,6 +57,37 @@ app.controller("category-ctrl", function($scope, $http) {
 			console.log("Error", error);
 		});
 	}
+
+	$scope.pager = {
+		page:0,
+		size:3,
+		get items(){
+			var start =this.page*this.size;
+			return $scope.items.slice(start,start+this.size);
+		},
+		get count(){
+			return Math.ceil(1.0*$scope.items.length/this.size);
+		},
+		first(){
+			this.page=0;
+		},
+		prev(){
+			this.page--;
+			if(this.page<0){
+				this.last();
+			}
+		},
+		next(){
+			this.page++;
+			if(this.page >= this.count){
+				this.first();
+			}
+		},
+		last(){
+			this.page =  this.count -1;
+		}
+
+	};
 
 	$scope.initialize();
 	$scope.reset();

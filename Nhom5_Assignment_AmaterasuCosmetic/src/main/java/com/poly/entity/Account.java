@@ -60,7 +60,6 @@ public class Account implements Serializable {
 	 * @Pattern(regexp = "^[0-9]{12}$", message =
 	 * "Căn cước công dân không được chứa chữ")
 	 */
-	private String CCCD;
 
 	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
 	@Column(columnDefinition = "nvarchar(max)")

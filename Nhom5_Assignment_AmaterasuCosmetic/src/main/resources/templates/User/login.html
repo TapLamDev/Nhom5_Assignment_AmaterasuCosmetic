@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Đăng nhập</title>
-<link rel="stylesheet" th:href="@{/assets/css/login.css}">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Đăng nhập</title>
+	<link rel="stylesheet" th:href="@{/assets/css/login.css}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
 	<div class="container" id="container">
 		<div class="form-container login-container">
-			<form class="form-lg" action="/login" method="post">
+			<form class="form-lg" action="/login" method="post" >
 				<h1>Đăng nhập</h1>
-				 <b style="color:red"><i>${message}${param.error}!</i></b>
+				<b th:if="${checkpass}" style="color:red"><i>Sai tài khoản hoặc mật khẩu.</i></b>
+				
 				<div class="form-control2">
 					<label>Tên người dùng</label>
-					 <input path="username" type="text" class="" name="username" id="username"/> 
-					 <small class="password-error-2">${messageUsername }</small>
+					<input path="username" type="text" class="" name="username" id="username" />
+					<!--<small th:if="false" class="password-error-2">${messageUsername}</small>-->
 				</div>
+				
 				<div class="form-control2">
 					<label>Mật khẩu</label>
-					<input  type="password" class="" name="password" id="password"
-						 />
-						<small class="password-error-2">${messagePassword }</small>
-					
+					<input type="password" class="" name="password" id="password" />
+					<!--<small th:if="false" class="password-error-2">${messagePassword}</small>-->
 				</div>
 
 				<div class="content">
 					<div class="checkbox">
-						<input type="checkbox" id="remember" name="remember" /> <label
-							for="remember">Ghi nhớ tài khoản</label>
+						<input type="checkbox" id="remember" name="remember" />
+						<label for="remember">Ghi nhớ tài khoản</label>
 					</div>
 					<div class="pass-link">
 						<a th:href="@{/forgotPassword}">Quên mật khẩu</a>
 					</div>
 				</div>
-				<button type="submit" value="submit"
-					style="font-size: small; font-weight: bold;">Đăng nhập</button>
-
 				
+				<button type="submit" value="submit" style="font-size: small; font-weight: bold;">Đăng nhập</button>
+
+
 				<div class="row m-1">
 					<div class="" style="cursor: pointer;">
-						<span> <img
-							th:src="@{/assets/images/la-co-viet-nam.png}" width="25"
-							alt=""> Tiếng Việt
+						<span> <img th:src="@{/assets/images/la-co-viet-nam.png}" width="25" alt=""> Tiếng Việt
 						</span>
 					</div>
 
 					<div class="ml-3" style="cursor: pointer;">
-						<span> <img th:src="@{/assets/images/co_my.png}"
-							width="25" alt=""> English
+						<span> <img th:src="@{/assets/images/co_my.png}" width="25" alt=""> English
 						</span>
 					</div>
 				</div>
@@ -80,13 +78,16 @@
 						chưa có tài khoản</p>
 
 					<a href="/register"><button class="ghost" id="register">
-						Đăng ký <i class="fa-solid fa-arrow-right"></i>
-					</button></a>
+							Đăng ký <i class="fa-solid fa-arrow-right"></i>
+						</button></a>
 				</div>
 			</div>
 		</div>
 	</div>
+	<script>
+		console.log(${me});
+	</script>
 
-	
 </body>
+
 </html>

@@ -12,7 +12,7 @@ import com.poly.entity.Account;
 @Controller
 public class AccountController {
 
-	//Acount
+	//Acountt
 	@GetMapping("/login")
 	public String login() {
 		return "User/login";

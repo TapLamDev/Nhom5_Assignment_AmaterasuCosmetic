@@ -88,7 +88,7 @@ public class HomeController {
 		model.addAttribute("products", filteredProducts);
 		return "User/search";
 	}
-
+	//ok
 	@GetMapping("/about")
 	public String about() {
 		return "User/about";

@@ -64,6 +64,7 @@ public class Account implements Serializable {
 	 */
 //	@Column(name = "Căn cước công dân")
 //	private String CCCD;
+	//a
 
 	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
 	@Column(columnDefinition = "nvarchar(max)", name = "Địa chỉ")

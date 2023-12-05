@@ -33,7 +33,7 @@ public class AccountController {
 		return "User/changePassword";
 	}
 
-	//registerssss
+	//registerssssss
 	@PostMapping("/register")
 	public String register(@ModelAttribute Account account, Model model) {
 		

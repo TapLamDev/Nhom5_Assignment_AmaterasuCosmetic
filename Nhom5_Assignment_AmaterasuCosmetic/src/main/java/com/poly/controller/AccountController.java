@@ -20,7 +20,7 @@ public class AccountController {
 	
 	@Autowired
 	AccountDao aDao;
-
+	
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("checkpass", false);

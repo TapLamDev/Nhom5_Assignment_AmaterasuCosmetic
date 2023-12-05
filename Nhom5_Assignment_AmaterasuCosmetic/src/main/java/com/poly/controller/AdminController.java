@@ -28,7 +28,7 @@ public class AdminController {
 	AccountDao accountDao;
 	@Autowired
 	OrderDAO odao;
-
+//hello
 	@GetMapping("/admin/index")
 	public String home(Model model) {
 		model.addAttribute("account_count", accountDao.getCount());

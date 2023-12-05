@@ -26,7 +26,7 @@ public class AccountController {
 		model.addAttribute("checkpass", false);
 		return "User/login";
 	}
-	//alo
+
 	@PostMapping("/login")
 	public String home(Model model, @RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
 		
@@ -48,7 +48,7 @@ public class AccountController {
 			model.addAttribute("checkpass", true);
 			return "User/login";
 		}
-		//haha
+
 	}
 
 	@GetMapping("/forgotPassword")

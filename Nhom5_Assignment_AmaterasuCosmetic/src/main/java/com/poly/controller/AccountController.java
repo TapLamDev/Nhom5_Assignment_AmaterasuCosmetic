@@ -22,6 +22,7 @@ public class AccountController {
 		return "User/forgotPassword";
 	}
 
+	//register
 	@GetMapping("/register")
 	public String register() {
 		return "User/register";

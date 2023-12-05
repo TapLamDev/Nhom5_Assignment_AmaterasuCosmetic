@@ -96,6 +96,7 @@
 							</form>
 						</div>
 					</div>
+<<<<<<< HEAD
 					<div class="user p-3 col-md-4 position-relative">
 						<i class="fas fa-user icon-user"></i>
 						<div class="auth-form nav position-absolute">
@@ -124,6 +125,29 @@
 							</c:choose>
 	
 						</div>
+=======
+				</div>
+				<div class="user p-3 col-md-4 position-relative">
+					<i class="fas fa-user icon-user"></i>
+					<div class="auth-form nav position-absolute">
+
+						<ul th:if="${session.username != null}" class="navbar-nav m-auto w-100">
+							<li class="nav-item"><a th:text="${session.username}" class="nav-link text-dark pl-1" href="/profile/index"><img alt=""
+										src="/imagesProfile/${ac.image}"
+										style="width: 50px; height: 50px;"></a></li>
+							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/home"
+									onchange="cleanSession()"><i class="far fa-user-circle"></i> Đăng xuất</a>
+							</li>
+						</ul>
+
+						<ul th:if="!${session.username != null}" class="navbar-nav m-auto w-100">
+							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/register"><i
+										class="far fa-user-circle"></i> Đăng ký</a></li>
+							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/login"><i
+										class="far fa-user-circle"></i> Đăng nhập</a></li>
+						</ul>
+
+>>>>>>> branch 'masters' of https://github.com/TapLamDev/Nhom5_Assignment_AmaterasuCosmetic
 					</div>
 					<div class="bag p-3 col-md-4 position-relative">
 						<a th:href="@{/cart}"><i class="fas fa-shopping-bag icon-bag"><sup th:text="${count}"></sup></i></a>
@@ -136,8 +160,27 @@
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 	
 		</header>
 	</body>
 	
 	</html>
+=======
+		</div>
+
+	</header>
+	<script>
+        $(document).ready(function() {
+            // Lắng nghe sự kiện click của thẻ a
+            $("#home").on("click", function() {
+                // Xóa session "username"
+                $("th:utext('username')").session().remove();
+            });
+        });
+        //heder
+    </script>
+</body>
+
+</html>
+>>>>>>> branch 'masters' of https://github.com/TapLamDev/Nhom5_Assignment_AmaterasuCosmetic

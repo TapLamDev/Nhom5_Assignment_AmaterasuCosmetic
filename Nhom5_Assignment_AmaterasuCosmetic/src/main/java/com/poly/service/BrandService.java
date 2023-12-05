@@ -6,7 +6,6 @@ import com.poly.entity.Brand;
 
 public interface BrandService {
 
-	
 	List<Brand> findAll();
 	
 	Brand findById(String id);

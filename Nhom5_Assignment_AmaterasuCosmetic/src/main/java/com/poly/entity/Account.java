@@ -57,9 +57,13 @@ public class Account implements Serializable {
 	/*
 	 * @Size(min = 12, max = 12, message = "Căn cước công dân phải có đủ 12 số")
 	 * 
-	 * @Pattern(regexp = "^[0-9]{12}$", message =
-	 * "Căn cước công dân không được chứa chữ")
+	 * @Pattern(regexp = "^[0-9]{12}$", message = "Căn cước công dân không được chứa chữ")
 	 */
+<<<<<<< HEAD
+=======
+//	@Column(name = "Căn cước công dân")
+//	private String CCCD;
+>>>>>>> branch 'masters' of https://github.com/TapLamDev/Nhom5_Assignment_AmaterasuCosmetic
 
 	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
 	@Column(columnDefinition = "nvarchar(max)")

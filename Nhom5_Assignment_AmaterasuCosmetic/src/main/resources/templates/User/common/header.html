@@ -101,10 +101,10 @@
 					<div class="auth-form nav position-absolute">
 
 						<ul th:if="${session.username != null}" class="navbar-nav m-auto w-100">
-							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/profile/index"><img alt=""
+							<li class="nav-item"><a th:text="${session.username}" class="nav-link text-dark pl-1" href="/profile/index"><img alt=""
 										src="/imagesProfile/${ac.image}"
-										style="width: 50px; height: 50px;">${username}</a></li>
-							<li th:click="|remove('username')|" class="nav-item"><a class="nav-link text-dark pl-1" href="/home"
+										style="width: 50px; height: 50px;"></a></li>
+							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/home"
 									onchange="cleanSession()"><i class="far fa-user-circle"></i> Đăng xuất</a>
 							</li>
 						</ul>
@@ -136,8 +136,14 @@
 
 	</header>
 	<script>
-
-	</script>
+        $(document).ready(function() {
+            // Lắng nghe sự kiện click của thẻ a
+            $("#home").on("click", function() {
+                // Xóa session "username"
+                $("th:utext('username')").session().remove();
+            });
+        });
+    </script>
 </body>
 
 </html>

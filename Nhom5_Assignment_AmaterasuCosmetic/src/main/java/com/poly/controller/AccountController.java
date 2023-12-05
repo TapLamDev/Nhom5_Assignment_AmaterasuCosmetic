@@ -21,14 +21,12 @@ public class AccountController {
 	@Autowired
 	AccountDao aDao;
 	
-	//alo
-	
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("checkpass", false);
 		return "User/login";
 	}
-	//a
+
 	@PostMapping("/login")
 	public String home(Model model, @RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
 		

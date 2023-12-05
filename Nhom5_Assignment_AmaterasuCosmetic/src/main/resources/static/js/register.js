@@ -25,7 +25,7 @@ app.controller("register-ctrl", function($scope, $http) {
 			console.log("Error", error);
 		});
 	}
-	//js
+
 	$scope.initialize();
 	$scope.reset();
 });

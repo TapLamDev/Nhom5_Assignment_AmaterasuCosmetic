@@ -15,21 +15,21 @@
 <body>
 	<div class="container" id="container">
 		<div class="form-container login-container">
-			<form class="form-lg" action="/login" method="post" >
+			<form class="form-lg" action="/login" method="post">
 				<h1>Đăng nhập</h1>
 				<b th:if="${checkpass}" style="color:red"><i>Sai tài khoản hoặc mật khẩu.</i></b>
-				
+
 				<div class="form-control2">
 					<label>Tên người dùng</label>
 					<input path="username" type="text" class="" name="username" id="username" />
 					<!--<small th:if="false" class="password-error-2">${messageUsername}</small>-->
 				</div>
-				
+
 				<div class="form-control2">
 					<label>Mật khẩu</label>
 					<input type="password" class="" name="password" id="password" />
 					<!--<small th:if="false" class="password-error-2">${messagePassword}</small>-->
-					
+
 				</div>
 
 				<div class="content">
@@ -41,7 +41,7 @@
 						<a th:href="@{/forgotPassword}">Quên mật khẩu</a>
 					</div>
 				</div>
-				
+
 				<button type="submit" value="submit" style="font-size: small; font-weight: bold;">Đăng nhập</button>
 
 

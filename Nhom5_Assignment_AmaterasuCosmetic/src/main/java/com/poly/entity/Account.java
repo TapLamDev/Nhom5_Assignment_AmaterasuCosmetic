@@ -75,10 +75,11 @@ public class Account implements Serializable {
 	 * 
 	 * @Email(message = "Email sai định dạng")
 	 */
-
 	private String email;
-	/* @NotNull(message = "Trạng thái hoạt động không được bỏ trống") */
+	
+	/* @NotNull(message = "Trạng thái hoạt động không được bỏ trống") */	
 	private boolean activated;
+	
 	/* @NotNull(message = "Role không được bỏ trống") */
 	@Column(name = "Role")
 	private boolean admin;

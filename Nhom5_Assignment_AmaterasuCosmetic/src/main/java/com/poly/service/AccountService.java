@@ -1,5 +1,20 @@
 package com.poly.service;
 
-public interface AccountService {
+import java.util.List;
 
+import com.poly.entity.Account;
+
+public interface AccountService {
+	
+	List<Account> findAll();
+	
+	Account findByUserName(String userName);
+	
+	List<Account> findByAccountUserName(String cuserName);
+	
+	Account create(Account Account);
+	
+	Account update(Account Account);
+	
+	void delete(String userName);
 }

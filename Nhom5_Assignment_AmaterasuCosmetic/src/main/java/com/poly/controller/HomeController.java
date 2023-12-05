@@ -97,7 +97,7 @@ public class HomeController {
 		model.addAttribute("products", filteredProducts);
 		return "User/search";
 	}
-
+	//ok
 	@GetMapping("/about")
 	public String about(Model model) {
 		model.addAttribute("count", cartService.gettotalCount());

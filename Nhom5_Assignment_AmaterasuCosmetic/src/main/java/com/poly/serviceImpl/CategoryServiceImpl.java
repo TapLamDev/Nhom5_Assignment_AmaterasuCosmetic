@@ -15,7 +15,6 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	CategoryDAO cdao;
 	
-	
 	@Override
 	public List<Category> findAll() {
 		// TODO Auto-generated method stub

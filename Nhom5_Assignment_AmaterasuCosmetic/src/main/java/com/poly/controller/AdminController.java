@@ -28,6 +28,7 @@ public class AdminController {
 	AccountDao accountDao;
 	@Autowired
 	OrderDAO odao;
+//hello
 
 	@GetMapping("/admin/index")
 	public String home(Model model) {
@@ -39,7 +40,6 @@ public class AdminController {
 		model.addAttribute("items", items);
 		return "Admin/index";
 	}
-	
 	
 	@GetMapping("/admin/brands")
 	public String showBrandPage(Model model) {

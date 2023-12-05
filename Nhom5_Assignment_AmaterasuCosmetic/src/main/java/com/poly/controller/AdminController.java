@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.poly.entity.Report;
 import com.poly.dao.AccountDao;
 import com.poly.dao.CategoryDAO;
+import com.poly.dao.OrderDAO;
 import com.poly.dao.ProductDAO;
 import com.poly.dao.ReportDAO;
 
@@ -25,12 +26,15 @@ public class AdminController {
 	ReportDAO rdao;
 	@Autowired
 	AccountDao accountDao;
+	@Autowired
+	OrderDAO odao;
 
 	@GetMapping("/admin/index")
 	public String home(Model model) {
 		model.addAttribute("account_count", accountDao.getCount());
 		model.addAttribute("product_count", pdao.getCount());
 		model.addAttribute("category_count", cdao.getCount());
+		model.addAttribute("order_count",odao.getCount());
 		List<Report> items = rdao.getInventoryByCategorys();
 		model.addAttribute("items", items);
 		return "Admin/index";

@@ -57,8 +57,6 @@
 								<div class="tab-pane fade show active" id="nav-home"
 									role="tabpanel" aria-labelledby="nav-home-tab">
 									<h4 class="card-title">Quản lý sản phẩm</h4>
-									<p class="card-description">Thêm mới, cập nhật và xoá sản
-										phẩm</p>
 									<div id="successMessage" style="color: red; display: none;"></div>
 									<form>
 										<div class="row">
@@ -143,6 +141,7 @@
 										<thead>
 											<tr>
 												<th scope="col">Action</th>
+												<th scope="col">Ảnh</th>
 												<th scope="col">Tên</th>
 												<th scope="col">Giá</th>
 												<th scope="col">Ngày tạo</th>
@@ -154,17 +153,25 @@
 										<tbody>
 											<tr ng-repeat="item in pager.items">
 												<td>
-													<button ng-click="edit(item)" class="btn btn-outline-primary"><i
-														class="bi bi-pencil"></i> Edit</button>
-												<button ng-click="delete(item)" class="btn btn-outline-danger mx-2"><i
-														class="bi bi-x-circle"></i> Delete</button>
+													<button ng-click="edit(item)"
+														class="btn btn-outline-primary">
+														<i class="bi bi-pencil"></i> Edit
+													</button>
+													<button ng-click="delete(item)"
+														class="btn btn-outline-danger mx-2">
+														<i class="bi bi-x-circle"></i> Delete
+													</button>
+												</td>
+												<td><img style="height: 50px; width: 50px;"
+													class="border border-5"
+													ng-src="{{'/assets/images/product/' + item.image}}">
 												</td>
 												<td>{{item.name}}</td>
 												<td>{{item.price}} VNĐ</td>
 												<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 												<td>{{item.category.name}}</td>
 												<td>{{item.brand.name}}</td>
-												<td>{{item.available?'Available':'Inavailable'}}</td>
+												<td style="color: green;">{{item.available?'Available':'Inavailable'}}</td>
 											</tr>
 										</tbody>
 									</table>

@@ -1,26 +1,26 @@
-	<!DOCTYPE html>
-	<html xmlns="http://www.thymeleaf.org">
-	
-	<body>
-		<!-- header -->
-		<header class="py-3 bg-white fixed-top border-bottom border-dark">
-			<div class="d-flex container align-items-center justify-content-between">
-				<div class="">
-					<a th:href="@{/home}"> <img class="header__logo" th:src="@{/assets/images/Amaterasu3_removebg2.png}"
-							height="90px" alt="">
-					</a>
-				</div>
-				<nav class="header__menu">
-					<ul class="nav">
-						<li class="nav-item m-1"><a class="nav-link text-dark nav-item__after" th:href="@{/home}"
-								style="font-weight: bold;">TRANG CHỦ</a></li>
-						<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
-								class="nav-link text-dark" th:href="@{/brand}"
-								style="font-weight: bold; color: #612f2c;">THƯƠNG
-								HIỆU</a></li>
-						<li class="nav-item m-1 position-relative header__item_3" onmouseover="add_li_hover(this), show()"
-							onmouseout="remove_li_hover(this), hide()"><a class="nav-link text-dark" th:href="@{/home}"
-								style="font-weight: bold; color: #612f2c;">SẢN PHẨM <i class="fas fa-caret-down"></i></a> <!-- <div
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+
+<body>
+	<!-- header -->
+	<header class="py-3 bg-white fixed-top border-bottom border-dark">
+		<div class="d-flex container align-items-center justify-content-between">
+			<div class="">
+				<a th:href="@{/home}"> <img class="header__logo" th:src="@{/assets/images/Amaterasu3_removebg2.png}"
+						height="90px" alt="">
+				</a>
+			</div>
+			<nav class="header__menu">
+				<ul class="nav">
+					<li class="nav-item m-1"><a class="nav-link text-dark nav-item__after" th:href="@{/home}"
+							style="font-weight: bold;">TRANG CHỦ</a></li>
+					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
+							class="nav-link text-dark" th:href="@{/brand}"
+							style="font-weight: bold; color: #612f2c;">THƯƠNG
+							HIỆU</a></li>
+					<li class="nav-item m-1 position-relative header__item_3" onmouseover="add_li_hover(this), show()"
+						onmouseout="remove_li_hover(this), hide()"><a class="nav-link text-dark" th:href="@{/home}"
+							style="font-weight: bold; color: #612f2c;">SẢN PHẨM <i class="fas fa-caret-down"></i></a> <!-- <div
 							class="position-absolute container bg-white border-dark border mega-content d-none"
 							style="z-index: 3; top: calc(100% + 29px); left: -430%; width: 1200px; animation: Growth ease-in .3s;">
 							<div class="row py-4 px-1">
@@ -76,64 +76,34 @@
 								</div>
 							</div>
 						</div> --></li>
-						<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
-								class="nav-link text-dark" href="/searchOrder"
-								style="font-weight: bold; color: #612f2c;">TRA CỨU ĐƠN HÀNG</a></li>
-						<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
-								class="nav-link text-dark" href="/about" style="font-weight: bold;" color:#612f2c;>GIỚI
-								THIỆU</a></li>
-						<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
-								class="nav-link text-dark" href="/contact" style="font-weight: bold;" color:#612f2c;>LIÊN
-								HỆ</a></li>
-					</ul>
-				</nav>
-				<div class="row">
-					<div class="search p-3 col-md-4 position-relative">
-						<i class="fas fa-search icon-search"></i>
-						<div class="position-absolute input-search">
-							<form action="/searchByName" method="get">
-								<input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm">
-							</form>
-						</div>
+					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
+							class="nav-link text-dark" href="/searchOrder"
+							style="font-weight: bold; color: #612f2c;">TRA CỨU ĐƠN HÀNG</a></li>
+					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
+							class="nav-link text-dark" href="/about" style="font-weight: bold;" color:#612f2c;>GIỚI
+							THIỆU</a></li>
+					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
+							class="nav-link text-dark" href="/contact" style="font-weight: bold;" color:#612f2c;>LIÊN
+							HỆ</a></li>
+				</ul>
+			</nav>
+			<div class="row">
+				<div class="search p-3 col-md-4 position-relative">
+					<i class="fas fa-search icon-search"></i>
+					<div class="position-absolute input-search">
+						<form action="/searchByName" method="get">
+							<input type="text" name="keyword" placeholder="Nhập từ khóa tìm kiếm">
+						</form>
 					</div>
-<<<<<<< HEAD
-					<div class="user p-3 col-md-4 position-relative">
-						<i class="fas fa-user icon-user"></i>
-						<div class="auth-form nav position-absolute">
-	
-							<c:choose>
-								<c:when test="${not empty(username)}">
-									<ul class="navbar-nav m-auto w-100">
-										<li class="nav-item"><a class="nav-link text-dark pl-1" href="/profile/index"><img
-													alt="" src="/imagesProfile/${ac.image}"
-													style="width: 50px; height: 50px;">${username}</a></li>
-										<li class="nav-item"><a class="nav-link text-dark pl-1" href="/logout"
-												onchange="cleanCookies()"><i class="far fa-user-circle"></i> Đăng xuất</a>
-										</li>
-									</ul>
-								</c:when>
-								<c:otherwise>
-									<ul class="navbar-nav m-auto w-100">
-										<li class="nav-item"><a class="nav-link text-dark pl-1" href="/register"><i
-													class="far fa-user-circle"></i> Đăng ký</a></li>
-										<li class="nav-item"><a class="nav-link text-dark pl-1" href="/login"><i
-													class="far fa-user-circle"></i> Đăng nhập</a></li>
-									</ul>
-	
-								</c:otherwise>
-	
-							</c:choose>
-	
-						</div>
-=======
 				</div>
+
 				<div class="user p-3 col-md-4 position-relative">
 					<i class="fas fa-user icon-user"></i>
 					<div class="auth-form nav position-absolute">
 
 						<ul th:if="${session.username != null}" class="navbar-nav m-auto w-100">
-							<li class="nav-item"><a th:text="${session.username}" class="nav-link text-dark pl-1" href="/profile/index"><img alt=""
-										src="/imagesProfile/${ac.image}"
+							<li class="nav-item"><a th:text="${session.username}" class="nav-link text-dark pl-1"
+									href="/profile/index"><img alt="" src="/imagesProfile/${ac.image}"
 										style="width: 50px; height: 50px;"></a></li>
 							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/home"
 									onchange="cleanSession()"><i class="far fa-user-circle"></i> Đăng xuất</a>
@@ -147,40 +117,37 @@
 										class="far fa-user-circle"></i> Đăng nhập</a></li>
 						</ul>
 
->>>>>>> branch 'masters' of https://github.com/TapLamDev/Nhom5_Assignment_AmaterasuCosmetic
 					</div>
-					<div class="bag p-3 col-md-4 position-relative">
-						<a th:href="@{/cart}"><i class="fas fa-shopping-bag icon-bag"><sup th:text="${count}"></sup></i></a>
-						<div th:if="${count == 0}" class="no_card position-absolute">
-							<figure class="border border">
-								<img th:src="@{/assets/images/no-cart.png}" alt="">
-								<figcaption class="text-center bg-white p-2">Chưa có sản phẩm</figcaption>
-							</figure>
-						</div>
+				</div>
+				<div class="bag p-3 col-md-4 position-relative">
+					<a th:href="@{/cart}"><i class="fas fa-shopping-bag icon-bag"><sup th:text="${count}"></sup></i></a>
+					<div th:if="${count == 0}" class="no_card position-absolute">
+						<figure class="border border">
+							<img th:src="@{/assets/images/no-cart.png}" alt="">
+							<figcaption class="text-center bg-white p-2">Chưa có sản phẩm</figcaption>
+						</figure>
 					</div>
 				</div>
 			</div>
-<<<<<<< HEAD
-	
-		</header>
-	</body>
-	
-	</html>
-=======
 		</div>
 
 	</header>
-	<script>
-        $(document).ready(function() {
-            // Lắng nghe sự kiện click của thẻ a
-            $("#home").on("click", function() {
-                // Xóa session "username"
-                $("th:utext('username')").session().remove();
-            });
-        });
-        //heder
-    </script>
 </body>
 
 </html>
->>>>>>> branch 'masters' of https://github.com/TapLamDev/Nhom5_Assignment_AmaterasuCosmetic
+</div>
+
+</header>
+<script>
+	$(document).ready(function () {
+		// Lắng nghe sự kiện click của thẻ a
+		$("#home").on("click", function () {
+			// Xóa session "username"
+			$("th:utext('username')").session().remove();
+		});
+	});
+        //heder
+</script>
+</body>
+
+</html>

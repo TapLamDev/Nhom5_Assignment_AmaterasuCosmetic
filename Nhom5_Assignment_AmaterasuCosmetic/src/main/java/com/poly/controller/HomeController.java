@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.entity.Product;
+import com.poly.service.CartService;
 import com.poly.dao.ProductDAO;
 
 @Controller
@@ -18,6 +19,9 @@ public class HomeController {
 
 	@Autowired
 	ProductDAO pdao;
+
+	@Autowired
+	CartService cartService;
 
 //	@GetMapping("/home")
 //	public String home() {
@@ -48,6 +52,7 @@ public class HomeController {
 		List<Product> products = pdao.findAll();
 		model.addAttribute("page", products);
 		model.addAttribute("products", products);
+		model.addAttribute("count", cartService.gettotalCount());
 		return "User/index";
 	}
 
@@ -55,6 +60,8 @@ public class HomeController {
 	public String home(Model model) {
 		List<Product> products = pdao.findAll();
 		model.addAttribute("products", products);
+		model.addAttribute("count", cartService.gettotalCount());
+
 		return "User/index";
 	}
 
@@ -66,6 +73,7 @@ public class HomeController {
 			return "redirect:/"; // Chuyển hướng về trang chủ hoặc trang thông báo lỗi
 		}
 		model.addAttribute("product", product);
+		model.addAttribute("count", cartService.gettotalCount());
 		return "User/detail";
 	}
 
@@ -85,17 +93,21 @@ public class HomeController {
 		}
 
 		model.addAttribute("keyword", keyword);
+		model.addAttribute("count", cartService.gettotalCount());
 		model.addAttribute("products", filteredProducts);
 		return "User/search";
 	}
 
 	@GetMapping("/about")
-	public String about() {
+	public String about(Model model) {
+		model.addAttribute("count", cartService.gettotalCount());
 		return "User/about";
+
 	}
 
 	@GetMapping("/contact")
-	public String contact() {
+	public String contact(Model model) {
+		model.addAttribute("count", cartService.gettotalCount());
 		return "User/contact";
 	}
 

@@ -37,7 +37,7 @@
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" id="brandForm">
-                            <h4 class="card-title">Quản lý Brand</h4>
+                            <h4 class="card-title">Quản lý Thương Hiệu</h4>
                             <p class="card-description">Thêm mới, cập nhật và xoá thương hiệu</p>
                             <form>
                                 <div class="row">
@@ -47,9 +47,9 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div>
-                                            <span>ID Brand:</span> <input ng-model="form.id" type="text"
+                                            <span>ID thương hiệu:</span> <input ng-model="form.id" type="text"
                                                 class="form-control w-50" placeholder="ID"><br>
-                                            <span>Tên Brand:</span> <input ng-model="form.name" type="text"
+                                            <span>Tên thương hiệu:</span> <input ng-model="form.name" type="text"
                                                 class="form-control w-50" placeholder="Tên sản phẩm"><br>
                                             <div class="">
                                                 <span>Hình ảnh: </span> <input type="file" id="image"
@@ -58,14 +58,14 @@
                                         </div><br>
                                         <div>
                                             <button ng-click="create()" class="btn btn-outline-primary mx-2">
-                                                <i class="bi bi-plus-circle"></i> Create
+                                                <i class="bi bi-plus-circle"></i> Thêm mới
                                             </button>
                                             <button ng-click="update()" class="btn btn-outline-success mx-2">
-                                                <i class="bi bi-upload"></i> Update
+                                                <i class="bi bi-upload"></i> Cập nhật
                                             </button>
-                                            <button ng-click="delete(form)" class="btn btn-outline-danger mx-2"><i class="bi bi-x-circle"></i> Delete</button>
+                                            <button ng-click="delete(form)" class="btn btn-outline-danger mx-2"><i class="bi bi-x-circle"></i> Xoá</button>
                                             <button ng-click="reset()" class="btn btn-outline-light mx-2"><i
-                                                    class="bi bi-arrow-clockwise"></i> Reset</button>
+                                                    class="bi bi-arrow-clockwise"></i> Làm mới</button>
                                         </div>
                                     </div>
                                 </div>
@@ -78,8 +78,8 @@
                         <thead>
                             <tr class="text-center">
                                 <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Image</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Hình ảnh</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

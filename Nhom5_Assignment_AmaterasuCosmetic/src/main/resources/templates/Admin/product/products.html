@@ -95,10 +95,10 @@
 													</div>
 													<div class="col">
 														<span>Ngày tạo:</span><input ng-model="form.createDate"
-															type="date" class="form-control"><br> <span>Category:</span><select
+															type="date" class="form-control"><br> <span>Loại:</span><select
 															ng-model="form.category.id" class="form-control">
 															<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
-														</select><br> <span>Brand:</span><select
+														</select><br> <span>Thương hiệu:</span><select
 															ng-model="form.brand.id" class="form-control">
 															<option ng-repeat="b in bras" ng-value="b.id">{{b.name}}</option>
 														</select><br> <span>Mô tả: </span>
@@ -114,19 +114,19 @@
 													<div class="">
 														<button ng-click="create()"
 															class="btn btn-outline-primary mx-2">
-															<i class="bi bi-plus-circle"></i> Create
+															<i class="bi bi-plus-circle"></i> Thêm mới
 														</button>
 														<button ng-click="update()"
 															class="btn btn-outline-success mx-2">
-															<i class="bi bi-upload"></i> Update
+															<i class="bi bi-upload"></i> Cập nhật
 														</button>
 														<button ng-click="delete(form)"
 															class="btn btn-outline-danger mx-2">
-															<i class="bi bi-x-circle"></i> Delete
+															<i class="bi bi-x-circle"></i> Xoá
 														</button>
 														<button ng-click="reset()"
 															class="btn btn-outline-light mx-2">
-															<i class="bi bi-arrow-clockwise"></i> Reset
+															<i class="bi bi-arrow-clockwise"></i> Làm mới
 														</button>
 													</div>
 												</div>

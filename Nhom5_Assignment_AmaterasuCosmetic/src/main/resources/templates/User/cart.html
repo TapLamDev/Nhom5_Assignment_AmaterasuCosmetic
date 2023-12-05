@@ -87,12 +87,13 @@
 							</div>
 							<div class="col-md-4 flex justify-content-between">
 								<p style="color: black;" th:text="${item.name}"></p>
-								<p style="color: black;" th:text="${item.price} +' VND'">
+								<p style="color: black;"><span class="formatted-price" th:text="${item.price}"></span>
+									VNĐ
 								</p>
 							</div>
-							<div class="col-md-3 flex justify-content-between">									
+							<div class="col-md-3 flex justify-content-between">
 								<th:block th:if="${item.tonKho > 1}">
-									<div class="row">									
+									<div class="row">
 										<div class="col-md-1">
 											<a th:href="@{'/cart/update/' + ${item.id} + '/minus'}"
 												style="text-decoration: none;">-</a>
@@ -119,7 +120,9 @@
 								</th:block>
 							</div>
 							<div class="col-md-3 flex justify-content-between" style="color: black;">
-								<p th:text="${item.price * item.qty} + ' VND'"></p>
+								<p>
+									<span class="formatted-price" th:text="${item.price * item.qty}"></span> VNĐ
+								</p>
 								<a th:href="@{'/cart/remove/' + ${item.id}}" style="margin-left: 1px;"
 									class="close">&times;</a>
 							</div>
@@ -145,15 +148,19 @@
 				<div class="row">
 					<div class="col-6" style="color: black;" th:text="${count} + ' Sản phẩm'"></div>
 
-					<div class="col-6 text-right" style="color: black;" th:text="${roundedAmount} + ' VND'"></div>
+					<div class="col-6 text-right" style="color: black;">
+						<span class="formatted-price" th:text="${roundedAmount}"></span> VNĐ
+					</div>
 				</div>
 
 				<form method="get">
 					<select id="shippingSelect" name="shipping" class="form-select" onchange="submitForm()">
 						<option class="text-muted">Lựa chọn hình thức giao hàng</option>
 						<option class="text-muted" th:value="@{'/cart/shipping/standard'}">Giao hàng tiêu chuẩn - 20.000
+							VNĐ
 						</option>
-						<option class="text-muted" th:value="@{'/cart/shipping/fast'}">Giao hàng nhanh - 50.000</option>
+						<option class="text-muted" th:value="@{'/cart/shipping/fast'}">Giao hàng nhanh - 50.000 VNĐ
+						</option>
 					</select>
 				</form>
 
@@ -169,8 +176,9 @@
 
 				<div class="row mt-3">
 					<div class="col" style="color: #ec6090;">TỔNG TIỀN</div>
-					<div class="col text-right" id="totalPrice" style="color: rgb(255, 0, 0);"
-						th:text="${roundedAmountUpdate != null ? roundedAmountUpdate + ' VND' : '0 VND'}">
+					<div class="col text-right" id="totalPrice" style="color: rgb(255, 0, 0);">
+						<span class="formatted-price"
+							th:text="${roundedAmountUpdate != null ? roundedAmountUpdate + ' VNĐ' : '0 VNĐ'}"></span> VNĐ
 					</div>
 				</div>
 
@@ -194,7 +202,18 @@
 			// Chuyển hướng đến đường dẫn tương ứng
 			window.location.href = selectedValue;
 		}
-    /*]]>*/
+		/*]]>*/
+		$(document).ready(function () {
+			// Lặp qua tất cả các phần tử có class là "formatted-price"
+			$(".formatted-price").each(function () {
+				// Lấy nội dung hiện tại của phần tử
+				var price = $(this).text();
+				// Định dạng giá thành dạng có dấu chấm
+				var formattedPrice = parseFloat(price).toLocaleString("vi-VN");
+				// Đặt lại nội dung của phần tử với giá đã được định dạng
+				$(this).text(formattedPrice);
+			});
+		});
 	</script>
 
 

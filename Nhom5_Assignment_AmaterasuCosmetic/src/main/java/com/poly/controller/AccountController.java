@@ -64,9 +64,15 @@ public class AccountController {
 		return "User/changePassword";
 	}
 
-	// Huy
 	@PostMapping("/register")
 	public String register(@ModelAttribute Account account, Model model) {
+		return "redirect:/";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("username");
 		return "redirect:/";
 	}
 }

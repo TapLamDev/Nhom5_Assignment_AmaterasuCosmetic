@@ -17,10 +17,10 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AccountController {
-	
+
 	@Autowired
 	AccountDao aDao;
-	
+
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("checkpass", false);
@@ -28,19 +28,16 @@ public class AccountController {
 	}
 
 	@PostMapping("/login")
-	public String home(Model model, @RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request) {
-		
+	public String home(Model model, @RequestParam("username") String username,
+			@RequestParam("password") String password, HttpServletRequest request) {
 		Account account = aDao.findByUsername(username);
-		
 		if (account != null) {
 			if (account.getPassword().equals(password)) {
 				// Tạo một đối tượng session
-			    HttpSession session = request.getSession();
-
-			    // Thêm dữ liệu tên người dùng vào session
-			    session.setAttribute("username", username);
-				
-			    return "redirect:/home";
+				HttpSession session = request.getSession();
+				// Thêm dữ liệu tên người dùng vào session
+				session.setAttribute("username", username);
+				return "redirect:/home";
 			}
 			model.addAttribute("checkpass", true);
 			return "User/login";
@@ -56,7 +53,7 @@ public class AccountController {
 		return "User/forgotPassword";
 	}
 
-	//register
+	// register
 	@GetMapping("/register")
 	public String register() {
 		return "User/register";
@@ -67,7 +64,7 @@ public class AccountController {
 		return "User/changePassword";
 	}
 
-	//Huy
+	// Huy
 	@PostMapping("/register")
 	public String register(@ModelAttribute Account account, Model model) {
 		return "redirect:/";

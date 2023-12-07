@@ -86,8 +86,17 @@
 
 					</div>
 				</div>
-				<div class="bag p-3 col-md-4 position-relative">
+				<div th:if="${session.username != null}" class="bag p-3 col-md-4 position-relative">
 					<a th:href="@{/cart}"><i class="fas fa-shopping-bag icon-bag"><sup th:text="${count}"></sup></i></a>
+					<div th:if="${count == 0}" class="no_card position-absolute">
+						<figure class="border border">
+							<img th:src="@{/assets/images/no-cart.png}" alt="">
+							<figcaption class="text-center bg-white p-2">Chưa có sản phẩm</figcaption>
+						</figure>
+					</div>
+				</div>
+				<div th:if="!${session.username != null}" class="bag p-3 col-md-4 position-relative">
+					<a th:href="@{/login}"><i class="fas fa-shopping-bag icon-bag"><sup th:text="${count}"></sup></i></a>
 					<div th:if="${count == 0}" class="no_card position-absolute">
 						<figure class="border border">
 							<img th:src="@{/assets/images/no-cart.png}" alt="">

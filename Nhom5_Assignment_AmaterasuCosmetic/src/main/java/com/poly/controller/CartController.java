@@ -117,25 +117,25 @@ public class CartController {
 	}
 	
 	//CheckOut (Chưa code xong)
-		@GetMapping("cart/checkout")
-		public String CheckOut(Model model) {
-		    String roundedAmountUpdate = (String) model.getAttribute("roundedAmountUpdate");
+	@GetMapping("cart/checkout")
+	public String CheckOut(Model model) {
+	    String roundedAmountUpdate = (String) model.getAttribute("roundedAmountUpdate");
 
-		    if (roundedAmountUpdate == null || roundedAmountUpdate.isEmpty()) {
-		    	model.addAttribute("products", cartService.getAllItems());
-		 	    model.addAttribute("count", cartService.gettotalCount());
-		 	    model.addAttribute("roundedAmount", cartService.getAmount());
-		        model.addAttribute("message", "Vui lòng chọn phương thức giao hàng trước khi thanh toán.");
-		        
-		        return "User/cart"; // Trả về trang giỏ hàng với thông báo
-		    }
+//	    if (roundedAmountUpdate == null || roundedAmountUpdate.isEmpty()) {
+//	    	model.addAttribute("products", cartService.getAllItems());
+//	 	    model.addAttribute("count", cartService.gettotalCount());
+//	 	    model.addAttribute("roundedAmount", cartService.getAmount());
+//	        model.addAttribute("message", "Vui lòng chọn phương thức giao hàng trước khi thanh toán.");
+//	        
+//	        return "User/cart"; // Trả về trang giỏ hàng với thông báo
+//	    }
 
-		    // Nếu roundedAmountUpdate đã được thiết lập, tiếp tục xử lý
-		    model.addAttribute("roundedAmount", cartService.getAmount());
-		    model.addAttribute("products", cartService.getAllItems());
-		    model.addAttribute("count", cartService.gettotalCount());
-		    model.addAttribute("roundedAmountUpdate", cartService.getAmountFast());
+	    // Nếu roundedAmountUpdate đã được thiết lập, tiếp tục xử lý
+	    model.addAttribute("roundedAmount", cartService.getAmount());
+	    model.addAttribute("products", cartService.getAllItems());
+	    model.addAttribute("count", cartService.gettotalCount());
+	    model.addAttribute("roundedAmountUpdate", cartService.getAmountFast());
 
-		    return "User/cart";
-		}
+	    return "redirect:/checkOrder";
+	}
 }

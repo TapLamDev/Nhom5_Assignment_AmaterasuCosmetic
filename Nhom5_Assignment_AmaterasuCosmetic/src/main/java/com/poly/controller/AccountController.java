@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.dao.AccountDao;
 import com.poly.entity.Account;
+import com.poly.entity.CartItem;
+import com.poly.service.AccountService;
+import com.poly.service.CartService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,7 +22,10 @@ import jakarta.servlet.http.HttpSession;
 public class AccountController {
 
 	@Autowired
-	AccountDao aDao;
+	AccountService accountService;
+	
+	@Autowired
+	CartService cartService;
 
 	@GetMapping("/login")
 	public String login(Model model) {
@@ -30,10 +36,14 @@ public class AccountController {
 	@PostMapping("/login")
 	public String home(Model model, @RequestParam("username") String username,
 			@RequestParam("password") String password, HttpServletRequest request) {
-		Account account = aDao.findByUsername(username);
+		Account account = accountService.findByUserName(username);
 		if (account != null) {
 			if (account.isAdmin()) {
 				return "redirect:/admin/index";
+			}
+			if (!account.isActivated()) {
+				model.addAttribute("checkpass", true);
+				return "User/login";
 			}
 			if (account.getPassword().equals(password)) {
 				// Tạo một đối tượng session
@@ -75,6 +85,7 @@ public class AccountController {
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.removeAttribute("username");
+		cartService.clear();
 		return "redirect:/";
 	}
 }

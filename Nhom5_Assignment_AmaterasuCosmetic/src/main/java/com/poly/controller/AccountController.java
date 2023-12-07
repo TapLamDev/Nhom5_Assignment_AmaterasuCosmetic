@@ -32,6 +32,9 @@ public class AccountController {
 			@RequestParam("password") String password, HttpServletRequest request) {
 		Account account = aDao.findByUsername(username);
 		if (account != null) {
+			if (account.isAdmin()) {
+				return "redirect:/admin/index";
+			}
 			if (account.getPassword().equals(password)) {
 				// Tạo một đối tượng session
 				HttpSession session = request.getSession();

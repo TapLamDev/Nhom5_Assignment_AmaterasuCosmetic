@@ -45,27 +45,20 @@ public class Account implements Serializable {
 	/* @NotEmpty(message = "Vui lòng nhập họ tên") */
 	private String fullname;
 
-	/*
-	 * @NotBlank(message = "Vui lòng nhập số điện thoại")
-	 * 
-	 * @Size(min = 10, max = 10, message = "Số điện thoại phải có 10 chữ số")
-	 * 
-	 */
-	// @Pattern(regexp = "^[0-9]{10}$", message = "Số điện thoại không hợp lệ")
+//	@NotBlank(message = "Vui lòng nhập số điện thoại")
+//	@Size(min = 10, max = 10, message = "Số điện thoại phải có 10 chữ số")
+//	@Pattern(regexp = "^[0-9]{10}$", message = "Số điện thoại không hợp lệ")
 	private String numberPhone;
 
-	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
+//	@NotBlank(message = "Vui lòng nhập địa chỉ")
 	@Column(columnDefinition = "nvarchar(max)")
 	private String address;
 
 	@Temporal(TemporalType.DATE)
 	private Date birthDay = new Date();
 
-	/*
-	 * @NotBlank(message = "Vui lòng nhập email")
-	 * 
-	 * @Email(message = "Email sai định dạng")
-	 */
+//	@NotBlank(message = "Vui lòng nhập email")
+//	@Email(message = "Email sai định dạng")
 	private String email;
 	
 	/* @NotNull(message = "Trạng thái hoạt động không được bỏ trống") */	

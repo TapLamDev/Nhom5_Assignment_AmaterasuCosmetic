@@ -54,15 +54,6 @@ public class Account implements Serializable {
 	// @Pattern(regexp = "^[0-9]{10}$", message = "Số điện thoại không hợp lệ")
 	private String numberPhone;
 
-	/*
-	 * @Size(min = 12, max = 12, message = "Căn cước công dân phải có đủ 12 số")
-	 * 
-	 * @Pattern(regexp = "^[0-9]{12}$", message = "Căn cước công dân không được chứa chữ")
-	 */
-//	@Column(name = "Căn cước công dân")
-//	private String CCCD;
-
-
 	/* @NotBlank(message = "Vui lòng nhập địa chỉ") */
 	@Column(columnDefinition = "nvarchar(max)")
 	private String address;
@@ -83,5 +74,6 @@ public class Account implements Serializable {
 	/* @NotNull(message = "Role không được bỏ trống") */
 	@Column(name = "Role")
 	private boolean admin;
+	
 	private String image;
 }

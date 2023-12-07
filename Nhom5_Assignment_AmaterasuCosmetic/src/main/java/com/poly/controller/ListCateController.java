@@ -18,7 +18,7 @@ import com.poly.entity.Product;
 import com.poly.service.CartService;
 
 @Controller
-public class CategoryController {
+public class ListCateController {
 	@Autowired
 	CategoryDAO cdao;
 
@@ -39,16 +39,24 @@ public class CategoryController {
 		return "User/listCategory";
 	}
 
-	@GetMapping("/productCategory/{name}")
-	public String productBrand(@PathVariable("name") String name, Model model) {
+	@GetMapping("/product/{name}")
+	public String productCategory(@PathVariable("name") String name, Model model) {
 		Category category = cdao.findByName(name);
+
+		if (category == null) {
+			return "redirect:/listCategory";
+		}
+
 		List<Product> products = pdao.findByCategory(category);
-		model.addAttribute("products", products);
-		List<Category> categories = cdao.findAll();
-		model.addAttribute("category", category);
 		long productCount = pdao.countByCategory(category);
+
+		model.addAttribute("category", category);
+		model.addAttribute("products", products);
 		model.addAttribute("productCount", productCount);
+
+		List<Category> categories = cdao.findAll();
+		model.addAttribute("categories", categories);
 		model.addAttribute("count", cartService.gettotalCount());
-		return "User/productCategory";
+		return "User/listCategory";
 	}
 }

@@ -57,7 +57,6 @@ public class HomeController {
 		model.addAttribute("products", products);
 		return "User/index";
 	}
-
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		Product product = pdao.findById(id).orElse(null);

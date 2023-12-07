@@ -61,7 +61,6 @@ public class HomeController {
 		List<Product> products = pdao.findAll();
 		model.addAttribute("products", products);
 		model.addAttribute("count", cartService.gettotalCount());
-
 		return "User/index";
 	}
 

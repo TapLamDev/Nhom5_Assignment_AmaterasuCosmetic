@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.poly.entity.Brand;
 import com.poly.entity.Product;
+import com.poly.service.CartService;
 import com.poly.dao.BrandDAO;
 import com.poly.dao.ProductDAO;
 
@@ -20,11 +21,15 @@ public class BrandController {
 
 	@Autowired
 	ProductDAO pdao;
+	
+	@Autowired
+	CartService cartService;
 
 	@GetMapping("/brand")
 	public String brand(Model model) {
 		List<Brand> brands = bdao.findAll();
 		model.addAttribute("brands", brands);
+		model.addAttribute("count", cartService.gettotalCount());
 		return "User/brand";
 	}
 
@@ -37,6 +42,7 @@ public class BrandController {
 	        model.addAttribute("brand", brand);
 	        long productCount = bdao.countByBrand(brand);
 	        model.addAttribute("productCount", productCount);
+			model.addAttribute("count", cartService.gettotalCount());
 	        return "User/productBrand";
 	}
 }

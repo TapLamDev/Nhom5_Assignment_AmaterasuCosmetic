@@ -35,6 +35,38 @@
 		.container mt-5 {
 			margin-top: 500px;
 		}
+
+		.product-item {
+			width: 300px;
+			margin: 15px;
+			padding: 15px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			float: left;
+		}
+
+		.product-item img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			border-radius: 5px;
+		}
+
+		.product-item h3 {
+			font-size: 20px;
+			margin-top: 15px;
+		}
+
+		.product-item p {
+			margin-top: 10px;
+		}
+
+		.product-item a {
+			text-decoration: none;
+			color: #000;
+			font-size: 16px;
+			margin-top: 10px;
+		}
 	</style>
 </head>
 
@@ -47,32 +79,25 @@
 	<div style="margin-top: 200px">
 		<div class="container mt-5">
 			<div class="row">
-				<th:if test="${param.keyword != null}">
-					<h3 class="text-center" style="color: #612f2c" th:text="'Kết quả tìm kiếm: ' + ${param.keyword}">
-					</h3>
-					<h3 class="text-center" style="color: #612f2c" th:text="${message}"></h3>
-					<div class="row" th:each="product : ${products}">
-						<div class="col-md-4" th:each="product : ${products}">
-							<a th:href="@{'/detail/' + ${product.id}}">
-								<img th:src="@{'/assets/images/' + ${product.image}}" class="product-img"
-									alt="${product.name}">
-							</a>
-							<h6 class="text-danger" style="margin-left: 70px;"
-								th:text="'Giá: ' + ${product.price} + ' VNĐ'"></h6>
-							<h6 class="product__name" th:text="${product.name}"></h6>
-						</div>
+				<h3 class="text-center" style="color: #612f2c" th:if="${param.keyword != null}"
+					th:text="'Kết quả tìm kiếm: ' + ${param.keyword}"></h3>
+				<h3 class="text-center" style="color: #612f2c" th:text="${message}"></h3>
+
+				<div class="row">
+					<!-- Use only one th:each here -->
+					<div class="col-md-4 product-item" th:each="product : ${products}">
+						<a th:href="@{'/detail/' + ${product.id}}">
+							<img th:src="@{'/assets/images/' + ${product.image}}" class="product-img"
+								alt="${product.name}">
+						</a>
+						<h6 class="text-danger" style="margin-left: 70px;">Giá: <span class="formatted-price"
+								th:text="${product.price}"></span> VNĐ</h6>
+						<h6 class="product__name" th:text="${product.name}"></h6>
 					</div>
-				</th:if>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-	<div class="container mt-5"></div>
-
-	<div class="container mt-5"></div>
 
 	<span th:insert="~{User/common/footer.html}"></span>
 

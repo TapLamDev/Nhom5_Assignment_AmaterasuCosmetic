@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.poly.entity.Brand;
+import com.poly.entity.Category;
 import com.poly.entity.Product;
 
 public interface ProductDAO extends JpaRepository<Product, Integer> {
@@ -29,6 +30,10 @@ public interface ProductDAO extends JpaRepository<Product, Integer> {
 	List<Product> findByName(String keyword);
     
     List<Product> findByBrand(Brand brand);
+
+	List<Product> findByCategory(Category category);
+
+	long countByCategory(Category category);
 
 
 

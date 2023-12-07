@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Amaterasu Cosmetics - Cửa hàng mỹ phẩm</title>
+	<title>Amaterasu Cosmetics - Sản Phẩm</title>
 	<link rel="icon" type="image/x-icon" th:href="@{/assets/images/Amaterasu3_removebg.png}">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -114,6 +114,40 @@
 				// Đặt lại nội dung của phần tử với giá đã được định dạng
 				$(this).text(formattedPrice);
 			});
+		});
+	</script>
+	
+	<script>
+		const add_li_hover = (x) => $(x).addClass("nav-item__after");
+		const remove_li_hover = (x) => $(x).removeClass("nav-item__after");
+		const hide = () => $(".mega-content").addClass("d-none");
+		const show = () => $(".mega-content").removeClass("d-none");
+
+		const owl = $('.owl-carousel');
+		owl.owlCarousel({
+			items: 4,
+			loop: true,
+			margin: 10,
+		});
+
+		const nextButton = document.querySelector('#nextButton');
+		const carousel = document.querySelector('#carouselExampleIndicators');
+
+		// Add a click event listener to the next button
+		nextButton.addEventListener('click', () => {
+			// Get the current carousel item
+			const currentItem = carousel.querySelector('.carousel-item.active');
+
+			// Get the next carousel item
+			const nextItem = currentItem.nextElementSibling;
+
+			// If there is a next carousel item, then display it
+			if (nextItem) {
+				carousel.querySelector('.carousel-indicators > .active').classList.remove('active');
+				carousel.querySelector(`.carousel-indicators > li:nth-child(${nextItem.index + 1})`).classList.add('active');
+				currentItem.classList.remove('active');
+				nextItem.classList.add('active');
+			}
 		});
 	</script>
 </body>

@@ -39,14 +39,14 @@
 				<div class="col-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body" id="brandForm">
-							<h4 class="card-title">Quản lý Category</h4>
+							<h4 class="card-title">Quản lý Loại Sản Phẩm</h4>
 							<p class="card-description">Thêm mới, cập nhật và xoá loại
-								hàng</p>
+								sản phẩm</p>
 							<form class="row g-3">
 								<fieldset class="mb-3 col-12">
-									<legend class="text-center">Category Information</legend>
+									<legend class="text-center">Thông Tin Loại Sản Phẩm</legend>
 									<div class="col-md-6">
-										<label path="name" class="form-label">Category Name:</label> <input
+										<label path="name" class="form-label">Tên loại:</label> <input
 											ng-model="form.name" placeholder="Name?" class="form-control"
 											type="text">
 									</div>
@@ -55,18 +55,18 @@
 								<div class="col-12">
 									<button ng-click="create()"
 										class="btn btn-outline-primary mx-2">
-										<i class="bi bi-plus-circle"></i> Create
+										<i class="bi bi-plus-circle"></i> Thêm mới
 									</button>
 									<button ng-click="update()"
 										class="btn btn-outline-success mx-2">
-										<i class="bi bi-upload"></i> Update
+										<i class="bi bi-upload"></i> Cập nhật
 									</button>
 									<button ng-click="delete(form)"
 										class="btn btn-outline-danger mx-2">
-										<i class="bi bi-x-circle"></i> Delete
+										<i class="bi bi-x-circle"></i> Xoá
 									</button>
 									<button ng-click="reset()" class="btn btn-outline-light mx-2">
-										<i class="bi bi-arrow-clockwise"></i> Reset
+										<i class="bi bi-arrow-clockwise"></i> Làm mới
 									</button>
 								</div>
 							</form>
@@ -79,7 +79,7 @@
 						<thead>
 							<tr>
 								<th scope="col">ID</th>
-								<th scope="col">Name</th>
+								<th scope="col">Tên</th>
 								<th scope="col">Action</th>
 							</tr>
 						</thead>

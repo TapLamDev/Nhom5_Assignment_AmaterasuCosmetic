@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.poly.entity.Product;
 import com.poly.service.CartService;
+import com.poly.entity.Account;
+import com.poly.dao.AccountDao;
 import com.poly.dao.ProductDAO;
 
 @Controller
 public class HomeController {
+	@Autowired
+	AccountDao accountDao;
 
 	@Autowired
 	ProductDAO pdao;
@@ -39,6 +43,7 @@ public class HomeController {
 		model.addAttribute("count", cartService.gettotalCount());
 		return "User/index";
 	}
+
 	@GetMapping("/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		Product product = pdao.findById(id).orElse(null);
@@ -71,7 +76,8 @@ public class HomeController {
 		model.addAttribute("products", filteredProducts);
 		return "User/search";
 	}
-	//ok
+
+	// ok
 	@GetMapping("/about")
 	public String about(Model model) {
 		model.addAttribute("count", cartService.gettotalCount());
@@ -84,5 +90,4 @@ public class HomeController {
 		model.addAttribute("count", cartService.gettotalCount());
 		return "User/contact";
 	}
-
 }

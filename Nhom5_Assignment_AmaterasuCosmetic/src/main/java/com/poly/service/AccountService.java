@@ -8,13 +8,13 @@ public interface AccountService {
 	
 	List<Account> findAll();
 	
-	Account findByUserName(String userName);
+	Account findByUserName(String username);
 	
-	List<Account> findByAccountUserName(String cuserName);
+	List<Account> findByAccountUserName(String cusername);
 	
 	Account create(Account Account);
 	
 	Account update(Account Account);
 	
-	void delete(String userName);
+	void delete(String username);
 }

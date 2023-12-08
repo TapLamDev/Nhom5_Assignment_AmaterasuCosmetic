@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.poly.entity.Account;
 import com.poly.entity.Account;
 import com.poly.service.AccountService;
+
+import jakarta.validation.Valid;
+
 import com.poly.service.AccountService;
 
 @CrossOrigin("*")
@@ -25,30 +28,29 @@ public class AccountRestController {
 
 	@Autowired
 	AccountService accountService;
-	
+
 	@GetMapping()
 	public List<Account> getAll() {
 		return accountService.findAll();
 	}
-	
-	@GetMapping("{userName}")
-	public Account getOne(@PathVariable("userName") String userName) {
-		return accountService.findByUserName(userName);
+
+	@GetMapping("{username}")
+	public Account getOne(@PathVariable("username") String username) {
+		return accountService.findByUserName(username);
 	}
-	
 
 	@PostMapping()
-	public Account create(@RequestBody Account account) {
+	public Account create(@Valid @RequestBody Account account) {
 		return accountService.create(account);
 	}
-	
-	@PutMapping("{userName}")
-	public Account update(@PathVariable("userName") String userName, @RequestBody Account account) {
+
+	@PutMapping("{username}")
+	public Account update(@PathVariable("username") String username, @Valid @RequestBody Account account) {
 		return accountService.update(account);
 	}
-	
-	@DeleteMapping("{userName}")
-	public void delete(@PathVariable("userName") String userName) {
-		accountService.delete(userName);
+
+	@DeleteMapping("{username}")
+	public void delete(@PathVariable("username") String username) {
+		accountService.delete(username);
 	}
 }

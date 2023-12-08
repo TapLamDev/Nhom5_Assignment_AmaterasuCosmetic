@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.poly.entity.Category;
 import com.poly.entity.Order;
 import com.poly.entity.StatusOrder;
 import com.poly.service.OrderService;
@@ -31,8 +32,8 @@ public class OrderRestController {
 	        return orderService.getAll();
 	    }
 
-	    @GetMapping("/{id}")
-	    public Order getOrderById(@PathVariable Long id) {
+	    @GetMapping("{id}")
+	    public Order getOrderById(@PathVariable("id") Long id) {
 	        return orderService.getOne(id);
 	    }
 
@@ -41,13 +42,13 @@ public class OrderRestController {
 	        return orderService.create(order);
 	    }
 
-	    @PutMapping("/{id}/update-status")
-	    public Order updateOrderStatus(@PathVariable Long id, @RequestParam StatusOrder newStatus) {
-	        return orderService.update(id, newStatus);
+	    @PutMapping("{id}")
+	    public Order updateOrderStatus(@PathVariable("id") Long id, @RequestBody Order order) {
+	        return orderService.update(order);
 	    }
 
-	    @DeleteMapping("/{id}")
-	    public void deleteOrder(@PathVariable Long id) {
+	    @DeleteMapping("{id}")
+	    public void deleteOrder(@PathVariable("id") Long id) {
 	        orderService.delete(id);
 	    }
 	

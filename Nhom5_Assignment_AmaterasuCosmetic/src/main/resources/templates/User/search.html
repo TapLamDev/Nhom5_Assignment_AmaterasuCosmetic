@@ -93,6 +93,9 @@
 						<h6 class="text-danger" style="margin-left: 70px;">Giá: <span class="formatted-price"
 								th:text="${product.price}"></span> VNĐ</h6>
 						<h6 class="product__name" th:text="${product.name}"></h6>
+						<button class="btn btn-danger" style="margin-left: 75px">
+							<a th:href="@{'/detail/' + ${product.id}}">Xem chi tiết</a>
+						</button>
 					</div>
 				</div>
 			</div>

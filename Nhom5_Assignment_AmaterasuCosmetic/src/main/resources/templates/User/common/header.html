@@ -84,9 +84,9 @@
 						</ul>
 
 						<ul th:if="!${session.username != null}" class="navbar-nav m-auto w-100">
-							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/register"><i
+							<li class="nav-item"><a class="nav-link text-dark pl-1" th:href="@{/register}"><i
 										class="far fa-user-circle"></i> Đăng ký</a></li>
-							<li class="nav-item"><a class="nav-link text-dark pl-1" href="/login"><i
+							<li class="nav-item"><a class="nav-link text-dark pl-1" th:href="@{/login}"><i
 										class="far fa-user-circle"></i> Đăng nhập</a></li>
 						</ul>
 

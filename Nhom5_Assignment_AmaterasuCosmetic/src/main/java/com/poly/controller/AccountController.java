@@ -89,6 +89,6 @@ public class AccountController {
 		HttpSession session = request.getSession();
 		session.removeAttribute("username");
 		cartService.clear();
-		return "redirect:/";
+		return "User/login";
 	}
 }

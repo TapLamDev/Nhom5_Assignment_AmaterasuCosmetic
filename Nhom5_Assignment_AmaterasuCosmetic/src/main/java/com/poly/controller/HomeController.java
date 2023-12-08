@@ -84,5 +84,7 @@ public class HomeController {
 		model.addAttribute("count", cartService.gettotalCount());
 		return "User/contact";
 	}
+	
+	//hello
 
 }

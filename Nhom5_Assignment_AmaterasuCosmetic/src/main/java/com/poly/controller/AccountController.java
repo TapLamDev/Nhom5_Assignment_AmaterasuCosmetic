@@ -27,6 +27,9 @@ public class AccountController {
 	@Autowired
 	CartService cartService;
 
+	@Autowired
+	HttpServletRequest request;
+	
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("checkpass", false);
@@ -35,7 +38,7 @@ public class AccountController {
 
 	@PostMapping("/login")
 	public String home(Model model, @RequestParam("username") String username,
-			@RequestParam("password") String password, HttpServletRequest request) {
+			@RequestParam("password") String password) {
 		Account account = accountService.findByUserName(username);
 		if (account != null) {
 			if (account.isAdmin()) {

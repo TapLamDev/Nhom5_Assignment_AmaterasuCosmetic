@@ -83,6 +83,11 @@
 							<input type="text" class="form-control" id="fullname" th:value="*{fullname}">
 						</div>
 						<div class="mb-3">
+							<label for="numberphone" class="form-label" style="font-weight: bold;">Số điện
+								thoại:</label>
+							<input type="text" class="form-control" id="numberphone" th:value="*{numberPhone}">
+						</div>
+						<div class="mb-3">
 							<label for="address" class="form-label" style="font-weight: bold;">Địa chỉ:</label>
 							<input type="text" class="form-control" id="address" th:value="*{address}">
 						</div>
@@ -128,19 +133,20 @@
 					<b style="color: #ec6090;">Thông tin thanh toán</b>
 				</h5>
 				<select id="shippingSelect" name="shipping" class="form-select" onchange="submitForm()">
-					<option class="text-muted">Lựa chọn hình thức giao hàng</option>
-					<option class="text-muted" th:value="@{'/cart/shipping/standard'}">Giao hàng tiêu chuẩn - 20.000
-						VNĐ
-					</option>
-					<option class="text-muted" th:value="@{'/cart/shipping/fast'}">Giao hàng nhanh - 50.000 VNĐ
-					</option>
+					<option class="text-muted" value="no">Lựa chọn hình thức giao hàng</option>
+					<option class="text-muted" value="sta">Giao hàng tiêu chuẩn - 20.000 VNĐ</option>
+					<option class="text-muted" value="fla">Giao hàng nhanh - 50.000 VNĐ</option>
 				</select>
 				<fmt:formatNumber var="roundedAmount" value="${Amount}" type="number" maxFractionDigits="2" />
 				<div class="row mt-3">
-					<div class="col" style="color: #ec6090;">TỔNG TIỀN</div>
+					<div class="col" style="color: #ec6090; font-size: 20px;">TỔNG TIỀN</div>
 					<fmt:formatNumber var="roundedTotalAmount" value="${Amount}" type="number" maxFractionDigits="2" />
-					<div class="col" id="totalPrice" style="color: black;" 
-						th:text="${roundedAmountUpdate != null ? roundedAmountUpdate + ' VNĐ' : '0 VNĐ'}"></div>
+					<div class="col text-right" style="color: rgb(255, 0, 0);">
+						<span class="formatted-price" id="totalPrice" th:text="${roundedAmount}"
+							style="font-size: 20px;"></span>
+						VNĐ
+					</div>
+
 				</div>
 				<br>
 				<div class="text-black">Chọn hình thức thanh toán</div>
@@ -152,77 +158,47 @@
 				<label for="female">ATM (Đang cập nhật)</label>
 				<br>
 
-				<button class="btn btn-primary btn-block mt-3" onclick="checkOut()">Xác nhận</button>
+				<button class="btn btn-primary btn-block mt-3">Xác nhận</button>
 			</div>
 		</div>
 	</div>
 	<br>
 	<span th:insert="~{User/common/footer.html}"></span>
 
-	<!--<script>
-		function updateTotalPrice() {
-			var shippingSelect = document.getElementById("shippingSelect");
-			var totalPriceDiv = document.getElementById("totalPrice");
-			//var Amount = ${Amount}; // Lấy giá trị Amount từ JSP
+	<script th:inline="javascript">
 
-			if (shippingSelect.value === "fast") {
-				totalPriceDiv.textContent =
-					new Intl.NumberFormat("vi-VN", {
-						style: "currency",
-						currency: "VND",
-						currencyDisplay: "code",
-					}).format((Amount + 50000));
-			} else {
-				totalPriceDiv.textContent =
-					new Intl.NumberFormat("vi-VN", {
-						style: "currency",
-						currency: "VND",
-						currencyDisplay: "code",
-					}).format((Amount + 20000));
+		var totalprice = document.getElementById('totalPrice').textContent;
+		function submitForm() {
+			var shipping = document.getElementById('shippingSelect').value;
+			//giá gốc
+			const originalPrice = parseFloat(totalprice);
+			//giá ship
+			let shippingPrice = 0;
+			if (shipping === 'sta') {
+				shippingPrice = 20000; // Giá vận chuyển tiêu chuẩn
+			} else if (shipping === 'fla') {
+				shippingPrice = 50000; // Giá vận chuyển nhanh
 			}
-			// Lưu giá trị vào cookie
-			var price = totalPriceDiv.textContent;
-			var shipping = shippingSelect.value;
-			// Xuất cookie sang web checkout
-			document.cookie = "price= " + price + "; path=/checkout";
-			document.cookie = "ship= " + shipping + "; path=/checkout";
-		}
-		function checkOut() {
-			// Kiểm tra xem người dùng đã chọn hình thức giao hàng chưa
-			if (shippingSelect.value === "") {
-				alert("Bạn chưa chọn hình thức giao hàng.");
-				return false;
-			}
-
-			// Chuyển sang trang khác
-			window.location.href = "/checkout";
-		}
-	</script>
-	<script>
-		function add_li_hover(x) {
-			$(x).addClass("nav-item__after");
+			//tổng giá
+			const newTotalPrice = originalPrice + shippingPrice;
+			// Định dạng giá thành dạng có dấu chấm
+			let formattedPrice = parseFloat(newTotalPrice).toLocaleString("vi-VN");
+			//out put
+			document.getElementById('totalPrice').textContent = formattedPrice;
 		}
 
-		function remove_li_hover(x) {
-			$(x).removeClass("nav-item__after");
-		}
-
-		function hide() {
-			$(".mega-content").addClass("d-none");
-		}
-
-		function show() {
-			$(".mega-content").removeClass("d-none");
-		}
-
-		var owl = $('.owl-carousel');
-		owl.owlCarousel({
-			items: 4,
-			loop: true,
-			margin: 10,
-
+		$(document).ready(function () {
+			// Lặp qua tất cả các phần tử có class là "formatted-price"
+			$(".formatted-price").each(function () {
+				// Lấy nội dung hiện tại của phần tử
+				var price = $(this).text();
+				// Định dạng giá thành dạng có dấu chấm
+				var formattedPrice = parseFloat(price).toLocaleString("vi-VN");
+				// Đặt lại nội dung của phần tử với giá đã được định dạng
+				$(this).text(formattedPrice);
+			});
 		});
-	</script>-->
+	</script>
 </body>
 
 </html>

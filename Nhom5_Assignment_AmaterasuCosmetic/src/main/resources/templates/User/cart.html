@@ -142,57 +142,26 @@
 					<p th:text="${errorMessage}"></p>
 				</div>
 				<h5>
-					<b style="color: #ec6090;">Thông tin đơn hàng</b>
+					<b style="color: #ec6090;">TỔNG TIỀN</b>
 				</h5>
 				<fmt:formatNumber var="roundedAmount" value="${Amount}" type="number" maxFractionDigits="2" />
-				<div class="row">
-					<div class="col-6" style="color: black;" th:text="${count} + ' Sản phẩm'"></div>
-
-					<div class="col-6 text-right" style="color: black;">
-						<span class="formatted-price" th:text="${roundedAmount}"></span> VNĐ
-					</div>
-				</div>
-
-				<form method="get">
-					<select id="shippingSelect" name="shipping" class="form-select" onchange="submitForm()">
-						<option class="text-muted">Lựa chọn hình thức giao hàng</option>
-						<option class="text-muted" th:value="@{'/cart/shipping/standard'}">Giao hàng tiêu chuẩn - 20.000
-							VNĐ
-						</option>
-						<option class="text-muted" th:value="@{'/cart/shipping/fast'}">Giao hàng nhanh - 50.000 VNĐ
-						</option>
-					</select>
-				</form>
-
-				<div class="py-md-2">NHẬP MÃ</div>
-
-				<div class="py-md-2" id="discountSection">
-					<form id="discountForm" action="" method="get">
-						<input class="form-control" placeholder="Nhập mã của bạn" name="discountCode">
-						<div class="py-md-1"></div>
-						<button type="submit">Áp dụng</button>
-					</form>
-				</div>
-
 				<div class="row mt-3">
-					<div class="col" style="color: #ec6090;">TỔNG TIỀN</div>
 					<div class="col text-right" id="totalPrice" style="color: rgb(255, 0, 0);">
-						<span class="formatted-price"
-							th:text="${roundedAmountUpdate != null ? roundedAmountUpdate + ' VNĐ' : '0 VNĐ'}"></span> VNĐ
+						<span class="formatted-price" th:text="${roundedAmount}" style="font-size: 30px;"></span> VNĐ
 					</div>
 				</div>
 
 				<div th:if="${message}" style="color: red;">
 					<p th:text="${message}"></p>
 				</div>
-				<form id="checkoutForm" action="/cart/checkout" method="get">
+				<a href="/checkOrder">
 					<button id="checkoutButton" class="btn btn-primary btn-block mt-3" type="submit">CHECKOUT</button>
-				</form>
+				</a>
 			</div>
 		</div>
 	</div>
 	<br>
-	
+
 	<span th:insert="~{User/common/footer.html}"></span>
 
 	<script th:inline="javascript">

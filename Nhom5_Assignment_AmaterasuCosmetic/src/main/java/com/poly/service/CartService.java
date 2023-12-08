@@ -14,6 +14,4 @@ public interface CartService {
 	CartItem plus(int id);
 	CartItem minus(int id);
 	int gettotalCount();
-	double getAmountStandard();
-	double getAmountFast();
 }

@@ -67,27 +67,6 @@ public class CartController {
 		return "redirect:/cart";
 	}
 
-	//Phương thức vận chuyển tiêu chuẩn (20,000)
-	@GetMapping("cart/shipping/standard")
-	public String shippingStandard(Model model) {
-		cartService.getAmountStandard();
-		model.addAttribute("roundedAmountUpdate", cartService.getAmountStandard());
-		model.addAttribute("products", cartService.getAllItems());
-		model.addAttribute("count", cartService.gettotalCount());
-		model.addAttribute("roundedAmount", cartService.getAmount());
-		return "User/cart";
-	}
-
-	//Phương thức vận chuyển nhanh (50,000)
-	@GetMapping("cart/shipping/fast")
-	public String shippingFast(Model model) {
-	    model.addAttribute("roundedAmountUpdate", cartService.getAmountFast());
-	    model.addAttribute("products", cartService.getAllItems());
-	    model.addAttribute("count", cartService.gettotalCount());
-	    model.addAttribute("roundedAmount", cartService.getAmount());
-	    return "User/cart";
-	}
-
 	//Tăng giá khi thêm số lượng sản phẩm
 	@GetMapping("/cart/update/{id}/plus") // annotation xử lí yêu cầu
 	public String plusQty(@PathVariable("id") int id, Model model) {
@@ -116,26 +95,4 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
-	//CheckOut (Chưa code xong)
-	@GetMapping("cart/checkout")
-	public String CheckOut(Model model) {
-	    String roundedAmountUpdate = (String) model.getAttribute("roundedAmountUpdate");
-
-//	    if (roundedAmountUpdate == null || roundedAmountUpdate.isEmpty()) {
-//	    	model.addAttribute("products", cartService.getAllItems());
-//	 	    model.addAttribute("count", cartService.gettotalCount());
-//	 	    model.addAttribute("roundedAmount", cartService.getAmount());
-//	        model.addAttribute("message", "Vui lòng chọn phương thức giao hàng trước khi thanh toán.");
-//	        
-//	        return "User/cart"; // Trả về trang giỏ hàng với thông báo
-//	    }
-
-	    // Nếu roundedAmountUpdate đã được thiết lập, tiếp tục xử lý
-	    model.addAttribute("roundedAmount", cartService.getAmount());
-	    model.addAttribute("products", cartService.getAllItems());
-	    model.addAttribute("count", cartService.gettotalCount());
-	    model.addAttribute("roundedAmountUpdate", cartService.getAmountFast());
-
-	    return "redirect:/checkOrder";
-	}
 }

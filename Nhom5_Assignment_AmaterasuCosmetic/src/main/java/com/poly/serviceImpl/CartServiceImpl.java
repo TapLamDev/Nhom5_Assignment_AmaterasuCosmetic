@@ -38,23 +38,7 @@ public class CartServiceImpl implements CartService {
 				.mapToDouble(item -> item.getQty() * item.getPrice())
 				.sum();		
 	}
-	
-	@Override
-	public double getAmountStandard() {
-		return maps.values().stream()
-				.mapToDouble(item -> (item.getQty() * item.getPrice()) + item.getShipping().getStandard())
-				.sum();		
-	}
-	
-	@Override
-	public double getAmountFast() {
-		return maps.values().stream()
-				.mapToDouble(item -> (item.getQty() * item.getPrice()) + item.getShipping().getFast())
-				.sum();		
-	}
-	
 
-	
 	@Override
 	public int gettotalCount() {
 	    int totalCount = 0;

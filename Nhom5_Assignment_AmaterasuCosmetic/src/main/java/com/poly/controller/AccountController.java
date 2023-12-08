@@ -39,29 +39,33 @@ public class AccountController {
 	@PostMapping("/login")
 	public String home(Model model, @RequestParam("username") String username,
 			@RequestParam("password") String password) {
-		Account account = accountService.findByUserName(username);
-		if (account != null) {
-			if (account.isAdmin()) {
-				return "redirect:/admin/index";
-			}
-			if (!account.isActivated()) {
+		try {
+			Account account = accountService.findByUserName(username);
+			if (account != null) {
+				if (account.isAdmin()) {
+					return "redirect:/admin/index";
+				}
+				if (!account.isActivated()) {
+					model.addAttribute("checkpass", true);
+					return "User/login";
+				}
+				if (account.getPassword().equals(password)) {
+					// Tạo một đối tượng session
+					HttpSession session = request.getSession();
+					// Thêm dữ liệu tên người dùng vào session
+					session.setAttribute("username", username);
+					return "redirect:/home";
+				}
+				model.addAttribute("checkpass", true);
+				return "User/login";
+			} else {
 				model.addAttribute("checkpass", true);
 				return "User/login";
 			}
-			if (account.getPassword().equals(password)) {
-				// Tạo một đối tượng session
-				HttpSession session = request.getSession();
-				// Thêm dữ liệu tên người dùng vào session
-				session.setAttribute("username", username);
-				return "redirect:/home";
-			}
-			model.addAttribute("checkpass", true);
-			return "User/login";
-		} else {
+		} catch (Exception e) {
 			model.addAttribute("checkpass", true);
 			return "User/login";
 		}
-
 	}
 
 	@GetMapping("/forgotPassword")

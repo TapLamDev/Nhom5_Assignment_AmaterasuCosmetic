@@ -7,10 +7,11 @@ import com.poly.entity.StatusOrder;
 
 public interface OrderService {
 
+		
 	List<Order> getAll();
     Order getOne(Long id);
     Order create(Order order);
-    Order update(Long id, StatusOrder newStatus);
+    Order update(Order order);
     void delete(Long id);
 	
 }

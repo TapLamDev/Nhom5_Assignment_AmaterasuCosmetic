@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Favicon icon -->
+<link rel="icon" type="image/x-icon"
+	th:href="@{/assets/images/Amaterasu3_removebg.png}">
+<title>Atemarasu-Admin</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<!-- Custom CSS -->
+<link th:href="@{/assets/extra-libs/c3/c3.min.css}" rel="stylesheet">
+<link th:href="@{/assets/libs/chartist/dist/chartist.min.css}"
+	rel="stylesheet">
+<link
+	th:href="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css}"
+	rel="stylesheet" />
+<!-- Custom CSS -->
+<link th:href="@{/dist/css/style.min.css}" rel="stylesheet">
+</head>
+
+<body ng-app="app" ng-controller="confirmedorder-ctrl">
+
+	<span th:insert="~{Admin/common/header.html}"></span>
+	<span th:insert="~{Admin/common/menu.html}"></span>
+	<div class="page-wrapper">
+		<div class="content-wrapper">
+			<div class="row">
+				<div class="col-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="card-body">
+                                    <h4>Danh sách đơn hàng đã xác nhận</h4>
+									<table class="table table-bordered" border-collapse="collapse">
+										<thead>
+											<tr>
+												<th scope="col">Action</th>
+												<th scope="col">ID</th>
+												<th scope="col">Mã Đơn Hàng</th>
+												<th scope="col">Ngày tạo</th>
+												<th scope="col">Trạng Thái</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr ng-repeat="item in items" ng-if="item.status === 'Confirmed'">
+												<td class="w-25">
+													<button ng-click="success(item)" class="btn btn-outline-success">Đã thanh toán</button>
+												<button ng-click="huy(item)" class="btn btn-outline-danger"><i
+														class="bi bi-x-circle"></i> Hủy</button>
+												</td>
+												<td>{{item.id}}</td>
+												<td>{{item.maDH}}</td>
+												<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
+												<td style="color: rgb(247, 202, 90);"><span ng-if="item.status === 'Confirmed'">Đã xác nhận</span></td>
+											</tr>
+											
+										</tbody>
+									</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+	<script th:src="@{/assets/libs/popper.js/dist/umd/popper.min.js}"></script>
+	<script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<!-- apps -->
+	<!-- apps -->
+	<script th:src="@{/dist/js/app-style-switcher.js}"></script>
+	<script th:src="@{/dist/js/feather.min.js}"></script>
+	<script
+		th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+	<script th:src="@{/dist/js/sidebarmenu.js}"></script>
+	<!--Custom JavaScript -->
+	<script th:src="@{/dist/js/custom.min.js}"></script>
+	<!--This page JavaScript -->
+	<script th:src="@{/assets/extra-libs/c3/d3.min.js}"></script>
+	<script th:src="@{/assets/extra-libs/c3/c3.min.js}"></script>
+	<script th:src="@{/assets/libs/chartist/dist/chartist.min.js}"></script>
+	<script
+		th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
+	<script
+		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
+	<script
+		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
+	<script th:src="@{/dist/js/pages/dashboards/dashboard1.min.js}"></script>
+	<script th:src="@{/js/confirmedorder.js}"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

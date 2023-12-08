@@ -56,8 +56,20 @@ public class AdminController {
 		return "Admin/product/products";
 	}
 	
-	@GetMapping("/admin/orders")
+	@GetMapping("/admin/processsingorders")
+	public String showprocesssingorders(Model model) {
+		return "Admin/order/Processsingorrder";
+	}
+	@GetMapping("/admin/confirmedorder")
+	public String showConfirmedorrder(Model model) {
+		return "Admin/order/Confirmedorrder";
+	}
+	@GetMapping("/admin/successorder")
+	public String showSuccessorrder(Model model) {
+		return "Admin/order/Successorrder";
+	}
+	@GetMapping("/admin/cancelorder")
 	public String showOrderPage(Model model) {
-		return "Admin/order/orders";
+		return "Admin/order/Cancelorrder";
 	}
 }

@@ -36,13 +36,8 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Order update(Long id, StatusOrder newStatus) {
-		Order existingOrder = getOne(id);
-        if (existingOrder != null) {
-            existingOrder.setStatus(newStatus);
-            return odao.save(existingOrder);
-        }
-        return null; // Order with the given ID not found
+	public Order update(Order order) {
+        return odao.save(order); // Order with the given ID not found
 	}
 
 	@Override
@@ -50,5 +45,6 @@ public class OrderServiceImpl implements OrderService {
 		// TODO Auto-generated method stub
 		odao.deleteById(id);
 	}
+
 
 }

@@ -39,8 +39,11 @@ public class Order  implements Serializable{
 	@Column(name = "Createdate")
 	Date createDate = new Date();
 	String numberPhoneRecevier;
+	
+	@Column(columnDefinition = "nvarchar(max)")
 	String addressReceive;
 	
+	@Column(columnDefinition = "nvarchar(max)")
 	String notes;
 	
 	@Enumerated(EnumType.ORDINAL)

@@ -119,6 +119,9 @@
 			font-size: 16px;
 			margin-top: 10px;
 		}
+		.lienket a{
+			text-decoration: none;
+		}
 	</style>
 </head>
 
@@ -162,7 +165,7 @@
 				</div>
 				<div class="container mt-4">
 					<div class="row">
-						<div th:each="category : ${categories}" class="col-md-12 mb-3">
+						<div th:each="category : ${categories}" class="col-md-12 mb-3 lienket">
 							<a th:href="@{/product/{name}(name=${category.name})}" class="category-link">
 								<div class="category-item text-left">
 									<h1 class="category-title" th:text="'= ' + ${category.name}"></h1>

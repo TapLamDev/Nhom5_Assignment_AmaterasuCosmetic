@@ -1,38 +1,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- Tell the browser to be responsive to screen width -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<!-- Favicon icon -->
-<link rel="icon" type="image/x-icon"
-	th:href="@{/assets/images/Amaterasu3_removebg.png}">
-<title>Atemarasu-Admin</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-	crossorigin="anonymous">
-<!-- Custom CSS -->
-<link th:href="@{/assets/extra-libs/c3/c3.min.css}" rel="stylesheet">
-<link th:href="@{/assets/libs/chartist/dist/chartist.min.css}"
-	rel="stylesheet">
-<link
-	th:href="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css}"
-	rel="stylesheet" />
-<!-- Custom CSS -->
-<link th:href="@{/dist/css/style.min.css}" rel="stylesheet">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/x-icon" th:href="@{/assets/images/Amaterasu3_removebg.png}">
+	<title>Atemarasu-Admin</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<!-- Custom CSS -->
+	<link th:href="@{/assets/extra-libs/c3/c3.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/libs/chartist/dist/chartist.min.css}" rel="stylesheet">
+	<link th:href="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css}" rel="stylesheet" />
+	<!-- Custom CSS -->
+	<link th:href="@{/dist/css/style.min.css}" rel="stylesheet">
 </head>
 
-<body ng-app="app" ng-controller="product-ctrl"
-	ng-init="initializeEditPage()">
+<body ng-app="app" ng-controller="product-ctrl" ng-init="initializeEditPage()">
 
 	<span th:insert="~{Admin/common/header.html}"></span>
 	<span th:insert="~{Admin/common/menu.html}"></span>
@@ -44,33 +35,31 @@
 						<div class="card-body">
 							<nav>
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
-									<button class="nav-link active" id="nav-home-tab"
-										data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-										role="tab" aria-controls="nav-home" aria-selected="true">Edit</button>
-									<button class="nav-link" id="nav-profile-tab"
-										data-bs-toggle="tab" data-bs-target="#nav-profile"
-										type="button" role="tab" aria-controls="nav-profile"
-										aria-selected="false">List</button>
+									<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+										data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home"
+										aria-selected="true">Edit</button>
+									<button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+										data-bs-target="#nav-profile" type="button" role="tab"
+										aria-controls="nav-profile" aria-selected="false">List</button>
 								</div>
 							</nav>
 							<div class="tab-content" id="nav-tabContent">
-								<div class="tab-pane fade show active" id="nav-home"
-									role="tabpanel" aria-labelledby="nav-home-tab">
+								<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+									aria-labelledby="nav-home-tab">
 									<h4 class="card-title">Quản lý sản phẩm</h4>
 									<div id="successMessage" style="color: red; display: none;"></div>
-									<form>
+									<form name="productForm" novalidate>
 										<div class="row">
 											<div class="col-sm-4">
-												<img style="height: 450px; width: 450px;"
-													class="border border-5"
+												<img style="height: 450px; width: 450px;" class="border border-5"
 													ng-src="{{'/assets/images/product/' + form.image}}">
 											</div>
 											<div class="col-sm-8">
 												<div class="row">
 													<div class="col">
-														<span>ID sản phẩm:</span> <input ng-model="form.id"
-															type="text" class="form-control" placeholder="ID"
-															disabled="true"><br> <span>Tên sản
+														<span>ID sản phẩm:</span> <input ng-model="form.id" type="text"
+															class="form-control" placeholder="ID" disabled="true"><br>
+														<span>Tên sản
 															phẩm:</span> <input ng-model="form.name" type="text"
 															class="form-control" placeholder="Tên sản phẩm"><br>
 														<span>Giá sản phẩm:</span> <input ng-model="form.price"
@@ -81,7 +70,8 @@
 															<div class="">
 																<input ng-model="form.available" type="radio"
 																	ng-value="true" /> Active <input
-																	ng-model="form.available" type="radio" ng-value="false" />
+																	ng-model="form.available" type="radio"
+																	ng-value="false" />
 																Inactive
 															</div>
 														</div>
@@ -95,17 +85,20 @@
 													</div>
 													<div class="col">
 														<span>Ngày tạo:</span><input ng-model="form.createDate"
-															type="date" class="form-control"><br> <span>Loại:</span><select
-															ng-model="form.category.id" class="form-control">
-															<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}</option>
+															type="date" class="form-control"><br>
+														<span>Loại:</span><select ng-model="form.category.id"
+															class="form-control">
+															<option ng-repeat="c in cates" ng-value="c.id">{{c.name}}
+															</option>
 														</select><br> <span>Thương hiệu:</span><select
 															ng-model="form.brand.id" class="form-control">
-															<option ng-repeat="b in bras" ng-value="b.id">{{b.name}}</option>
+															<option ng-repeat="b in bras" ng-value="b.id">{{b.name}}
+															</option>
 														</select><br> <span>Mô tả: </span>
 														<textarea rows="" cols="" class="form-control"
 															ng-model="form.describe"></textarea>
-														<span>Số lượng tồn kho: </span><input
-															ng-model="form.tonKho" class="form-control">
+														<span>Số lượng tồn kho: </span><input ng-model="form.tonKho"
+															class="form-control">
 													</div>
 												</div>
 
@@ -124,8 +117,7 @@
 															class="btn btn-outline-danger mx-2">
 															<i class="bi bi-x-circle"></i> Xoá
 														</button>
-														<button ng-click="reset()"
-															class="btn btn-outline-light mx-2">
+														<button ng-click="reset()" class="btn btn-outline-light mx-2">
 															<i class="bi bi-arrow-clockwise"></i> Làm mới
 														</button>
 													</div>
@@ -153,25 +145,23 @@
 										<tbody>
 											<tr ng-repeat="item in pager.items">
 												<td>
-													<button ng-click="edit(item)"
-														class="btn btn-outline-primary">
+													<button ng-click="edit(item)" class="btn btn-outline-primary">
 														<i class="bi bi-pencil"></i>
 													</button>
-													<button ng-click="delete(item)"
-														class="btn btn-outline-danger mx-2">
+													<button ng-click="delete(item)" class="btn btn-outline-danger mx-2">
 														<i class="bi bi-x-circle"></i>
 													</button>
 												</td>
-												<td><img style="height: 50px; width: 50px;"
-													class="border border-5"
-													ng-src="{{'/assets/images/product/' + item.image}}">
+												<td><img style="height: 50px; width: 50px;" class="border border-5"
+														ng-src="{{'/assets/images/product/' + item.image}}">
 												</td>
 												<td>{{item.name}}</td>
 												<td>{{item.price}} VNĐ</td>
 												<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 												<td>{{item.category.name}}</td>
 												<td>{{item.brand.name}}</td>
-												<td style="color: green;">{{item.available?'Available':'Inavailable'}}</td>
+												<td style="color: green;">{{item.available?'Available':'Inavailable'}}
+												</td>
 											</tr>
 										</tbody>
 									</table>
@@ -184,7 +174,7 @@
 												<button ng-click="pager.prev()" class="page-link">Previous</button>
 											</li>
 											<li class="page-item"><span style="color: black;"
-												class="page-link bg-primary">{{pager.page + 1}} of
+													class="page-link bg-primary">{{pager.page + 1}} of
 													{{pager.count}}</span></li>
 											<li class="page-item">
 												<button ng-click="pager.next()" class="page-link">Next</button>
@@ -210,8 +200,7 @@
 	<!-- apps -->
 	<script th:src="@{/dist/js/app-style-switcher.js}"></script>
 	<script th:src="@{/dist/js/feather.min.js}"></script>
-	<script
-		th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
+	<script th:src="@{/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js}"></script>
 	<script th:src="@{/dist/js/sidebarmenu.js}"></script>
 	<!--Custom JavaScript -->
 	<script th:src="@{/dist/js/custom.min.js}"></script>
@@ -219,16 +208,12 @@
 	<script th:src="@{/assets/extra-libs/c3/d3.min.js}"></script>
 	<script th:src="@{/assets/extra-libs/c3/c3.min.js}"></script>
 	<script th:src="@{/assets/libs/chartist/dist/chartist.min.js}"></script>
-	<script
-		th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
-	<script
-		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
-	<script
-		th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
+	<script th:src="@{/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
+	<script th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js}"></script>
+	<script th:src="@{/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js}"></script>
 	<script th:src="@{/dist/js/pages/dashboards/dashboard1.min.js}"></script>
 	<script th:src="@{/js/product.js}"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 		crossorigin="anonymous"></script>
 </body>

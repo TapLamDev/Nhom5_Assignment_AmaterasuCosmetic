@@ -85,7 +85,7 @@ public class AccountController {
 
 	@PostMapping("/register")
 	public String register(@ModelAttribute Account account, Model model) {
-		return "redirect:/";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/logout")

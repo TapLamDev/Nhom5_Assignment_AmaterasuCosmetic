@@ -14,7 +14,7 @@ import com.poly.service.OrderDetailService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/rest/orderdetails")
+@RequestMapping("/rest/orderDetail")
 public class OrderDetailRestController {
 
 	@Autowired

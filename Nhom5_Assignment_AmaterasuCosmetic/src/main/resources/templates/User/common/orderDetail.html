@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<!--link agularjs-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="orderDetail-ctrl">
+	<th:block th:if="false">
+		<div th:each="item: ${products}">
+			<input type="hidden" th:name="id" th:value="${item.id}">
+			<div class="row d-flex border-bottom mt-3 align-items-center">
+				<!--Sô lượng-->
+				<div class="col-md-3 flex justify-content-between">
+					<div class="col-md"><span th:text="${item.qty}"></span></div>
+				</div>
+				<!--Tổng giá của mỗi sản phẩm-->
+				<div class="col-md-3 flex justify-content-between" style="color: black;">
+					<p>
+						<span class="formatted-price" th:text="${item.price * item.qty}"></span> VNĐ
+					</p>
+				</div>
+			</div>
+		</div>
+	</th:block>
+	<script>
+		
+	</script>
+	<script th:src="@{/js/orderDetail.js}"></script>
+</body>
+
+</html>

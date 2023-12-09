@@ -83,10 +83,7 @@
 					<form th:object="${account}">
 						<th:block th:if="false">
 							<div class="mb-3">
-								<input ng-model="form.account.username" type="text" class="form-control" id="username">
-							</div>
-							<div class="mb-3">
-								<input type="text" class="form-control" id="status" th:value="Processsing">
+								<input type="text" class="form-control" id="username" th:value="*{username}">
 							</div>
 						</th:block>
 
@@ -97,7 +94,7 @@
 						<div class="mb-3">
 							<label for="numberphone" class="form-label" style="font-weight: bold;">Số điện
 								thoại:</label>
-							<input ng-model="form.numberPhoneRecevier" type="text" class="form-control" id="numberphone">
+							<input ng-model="form.numberPhoneRecevier" ng-init="" type="text" class="form-control" id="numberphone"  >
 						</div>
 						<div class="mb-3">
 							<label for="address" class="form-label" style="font-weight: bold;">Địa chỉ:</label>
@@ -177,7 +174,7 @@
 				<input type="radio" id="female" name="gender" value="female" image="female.png" disabled>
 				<label for="female">ATM (Đang cập nhật)</label>
 				<br>
-				<button class="btn btn-primary btn-block mt-3" ng-click="create()" type="submit" value="submit">Xác
+				<button class="btn btn-primary btn-block mt-3" ng-click="create(username)" type="submit" value="submit">Xác
 					nhận</button>
 			</div>
 		</div>

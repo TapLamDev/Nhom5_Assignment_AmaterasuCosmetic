@@ -5,6 +5,7 @@ app.controller("order-ctrl", function($scope, $http) {
 
 	};
 	$scope.items = [];
+	$scope.account = {};
 
 	$scope.reset = function() {
 		$scope.form = {
@@ -15,6 +16,13 @@ app.controller("order-ctrl", function($scope, $http) {
 	$scope.initialize = function() {
 		$http.get("/rest/orders").then(resp => {
 			$scope.items = resp.data;
+			console.log("Success", resp);
+		})
+	}
+	
+	$scope.account = function() {
+		$http.get("/rest/register").then(resp => {
+			$scope.account = resp.data;
 			console.log("Success", resp);
 		})
 	}
@@ -94,5 +102,6 @@ app.controller("order-ctrl", function($scope, $http) {
 	};
 
 	$scope.initialize();
-	$scope.reset();
+	$scope.account();
+	//$scope.reset();
 });

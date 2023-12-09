@@ -31,9 +31,12 @@
 		integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
 		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script th:src="@{/assets/OwlCarousel2-2.3.4/dist/owl.carousel.min.js}"></script>
+	<!--link agularjs-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
 </head>
 
-<body>
+<body ng-app="app" ng-controller="order-ctrl">
 
 	<span th:insert="~{User/common/header.html}"></span>
 
@@ -78,6 +81,15 @@
 						<b style="color: #ec6090;">Thông tin đơn hàng</b>
 					</h5>
 					<form th:object="${account}">
+						<th:block th:if="false">
+							<div class="mb-3">
+								<input ng-model="form.account.username" type="text" class="form-control" id="username">
+							</div>
+							<div class="mb-3">
+								<input type="text" class="form-control" id="status" th:value="Processsing">
+							</div>
+						</th:block>
+
 						<div class="mb-3">
 							<label for="fullname" class="form-label" style="font-weight: bold;">Họ và tên:</label>
 							<input type="text" class="form-control" id="fullname" th:value="*{fullname}">
@@ -85,11 +97,19 @@
 						<div class="mb-3">
 							<label for="numberphone" class="form-label" style="font-weight: bold;">Số điện
 								thoại:</label>
-							<input type="text" class="form-control" id="numberphone" th:value="*{numberPhone}">
+							<input ng-model="form.numberPhoneRecevier" type="text" class="form-control" id="numberphone">
 						</div>
 						<div class="mb-3">
 							<label for="address" class="form-label" style="font-weight: bold;">Địa chỉ:</label>
-							<input type="text" class="form-control" id="address" th:value="*{address}">
+							<input ng-model="form.addressReceive" type="text" class="form-control" id="address"
+								th:value="*{address}">
+						</div>
+						<div class="mb-3">
+							<label for="notes" class="form-label" style="font-weight: bold;">Ghi chú:</label>
+							<div class="text-arena">
+								<textarea ng-model="form.notes" id="notes" name="text-input" class="form-control"
+									rows="3" cols="50"></textarea>
+							</div>
 						</div>
 					</form>
 					<div class="d-flex justify-content-between align-items-center">
@@ -157,8 +177,8 @@
 				<input type="radio" id="female" name="gender" value="female" image="female.png" disabled>
 				<label for="female">ATM (Đang cập nhật)</label>
 				<br>
-
-				<button class="btn btn-primary btn-block mt-3">Xác nhận</button>
+				<button class="btn btn-primary btn-block mt-3" ng-click="create()" type="submit" value="submit">Xác
+					nhận</button>
 			</div>
 		</div>
 	</div>
@@ -199,6 +219,7 @@
 			});
 		});
 	</script>
+	<script th:src="@{/js/order.js}"></script>
 </body>
 
 </html>

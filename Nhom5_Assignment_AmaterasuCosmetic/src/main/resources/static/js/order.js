@@ -1,10 +1,15 @@
 const app = angular.module("app", []);
 app.controller("order-ctrl", function($scope, $http) {
-	$scope.form = {};
+	$scope.form = {
+		status: 'Processsing',
+
+	};
 	$scope.items = [];
 
 	$scope.reset = function() {
-		$scope.form = {};
+		$scope.form = {
+			status: 'Processsing',
+		};
 	}
 
 	$scope.initialize = function() {
@@ -20,17 +25,17 @@ app.controller("order-ctrl", function($scope, $http) {
 	}
 
 
-	// $scope.create = function() {
-	// 	var item = angular.copy($scope.form);
-	// 	$http.post('/rest/orders', item).then(resp => {
-	// 		$scope.items.push(resp.data);
-	// 		$scope.reset();
-	// 		alert("Thêm mới Category thành công");
-	// 	}).catch(error => {
-	// 		alert("Lỗi thêm mới!");
-	// 		console.log("Error", error);
-	// 	});
-	// }
+	$scope.create = function() {
+		var item = angular.copy($scope.form);
+		$http.post('/rest/orders', item).then(resp => {
+			$scope.items.push(resp.data);
+			$scope.reset();
+			alert("Mã hóa đơn của bạn là: " );
+		}).catch(error => {
+			alert("Lỗi thêm mới!");
+			console.log("Error", error);
+		});
+	}
 
 	$scope.update = function() {
 		var item = angular.copy($scope.form);
@@ -58,32 +63,32 @@ app.controller("order-ctrl", function($scope, $http) {
 	}
 
 	$scope.pager = {
-		page:0,
-		size:3,
-		get items(){
-			var start =this.page*this.size;
-			return $scope.items.slice(start,start+this.size);
+		page: 0,
+		size: 3,
+		get items() {
+			var start = this.page * this.size;
+			return $scope.items.slice(start, start + this.size);
 		},
-		get count(){
-			return Math.ceil(1.0*$scope.items.length/this.size);
+		get count() {
+			return Math.ceil(1.0 * $scope.items.length / this.size);
 		},
-		first(){
-			this.page=0;
+		first() {
+			this.page = 0;
 		},
-		prev(){
+		prev() {
 			this.page--;
-			if(this.page<0){
+			if (this.page < 0) {
 				this.last();
 			}
 		},
-		next(){
+		next() {
 			this.page++;
-			if(this.page >= this.count){
+			if (this.page >= this.count) {
 				this.first();
 			}
 		},
-		last(){
-			this.page =  this.count -1;
+		last() {
+			this.page = this.count - 1;
 		}
 
 	};

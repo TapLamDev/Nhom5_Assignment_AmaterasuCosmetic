@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.entity.Order;
 import com.poly.entity.StatusOrder;
+import com.poly.service.OrderDetailService;
 import com.poly.service.OrderService;
 
 @CrossOrigin("*")
@@ -25,31 +26,33 @@ public class OrderRestController {
 
 	@Autowired
 	OrderService orderService;
-	
-	 @GetMapping()
-	    public List<Order> getAllOrders() {
-	        return orderService.getAll();
-	    }
 
-	    @GetMapping("/{id}")
-	    public Order getOrderById(@PathVariable Long id) {
-	        return orderService.getOne(id);
-	    }
+	@Autowired
+	OrderDetailService orderDetailService;
 
-	    @PostMapping()
-	    public Order createOrder(@RequestBody Order order) {
-	        return orderService.create(order);
-	    }
+	@GetMapping()
+	public List<Order> getAllOrders() {
+		return orderService.getAll();
+	}
 
-	    @PutMapping("/{id}/update-status")
-	    public Order updateOrderStatus(@PathVariable Long id, @RequestParam StatusOrder newStatus) {
-	        return orderService.update(id, newStatus);
-	    }
+	@GetMapping("/{id}")
+	public Order getOrderById(@PathVariable Long id) {
+		return orderService.getOne(id);
+	}
 
-	    @DeleteMapping("/{id}")
-	    public void deleteOrder(@PathVariable Long id) {
-	        orderService.delete(id);
-	    }
-	
-	
+	@PostMapping()
+	public Order createOrder(@RequestBody Order order) {
+		return orderService.create(order);
+	}
+
+	@PutMapping("/{id}/update-status")
+	public Order updateOrderStatus(@PathVariable Long id, @RequestParam StatusOrder newStatus) {
+		return orderService.update(id, newStatus);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteOrder(@PathVariable Long id) {
+		orderService.delete(id);
+	}
+
 }

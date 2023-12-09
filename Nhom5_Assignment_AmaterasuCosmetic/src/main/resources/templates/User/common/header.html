@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.thymeleaf.org">
+<head>
+
+</head>
 
 <body>
 	<!-- header -->
@@ -12,7 +15,7 @@
 			</div>
 			<nav class="header__menu">
 				<ul class="nav">
-					<li class="nav-item m-1"><a class="nav-link text-dark nav-item__after" th:href="@{/home}"
+					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a class="nav-link text-dark" th:href="@{/home}"
 							style="font-weight: bold;">TRANG CHỦ</a></li>
 					<li class="nav-item m-1" onmouseover="add_li_hover(this)" onmouseout="remove_li_hover(this)"><a
 							class="nav-link text-dark" th:href="@{/brand}"
@@ -70,7 +73,7 @@
 
 						<ul th:if="${session.username != null}" class="navbar-nav m-auto w-100">
 							<li class="nav-item"><a th:text="${session.username}" class="nav-link text-dark pl-1"
-									href="/profile/index"><img alt="" src="/imagesProfile/${ac.image}"
+									th:href="@{/profile}"><img alt="" th:src="@{/imagesProfile/${ac.image}}"
 										style="width: 50px; height: 50px;"></a></li>
 							<li class="nav-item"><a class="nav-link text-dark pl-1" href="@"
 									><i class="far fa-user-circle"></i>Lịch sử hóa đơn</a>
@@ -115,5 +118,4 @@
 		
 	</script>
 </body>
-
 </html>

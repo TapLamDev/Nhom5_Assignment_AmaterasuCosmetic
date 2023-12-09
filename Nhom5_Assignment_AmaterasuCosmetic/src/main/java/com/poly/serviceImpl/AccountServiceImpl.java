@@ -22,13 +22,13 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account findByUserName(String userName) {
+	public Account findByUserName(String username) {
 		// TODO Auto-generated method stub
-		return aDao.findById(userName).get();
+		return aDao.findById(username).get();
 	}
 
 	@Override
-	public List<Account> findByAccountUserName(String cuserName) {
+	public List<Account> findByAccountUserName(String cusername) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -46,8 +46,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void delete(String userName) {
+	public void delete(String username) {
 		// TODO Auto-generated method stub
-		aDao.deleteById(userName);
+		aDao.deleteById(username);
 	}
 }

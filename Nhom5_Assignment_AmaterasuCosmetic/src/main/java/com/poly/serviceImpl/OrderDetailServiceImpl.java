@@ -26,5 +26,32 @@ public class OrderDetailServiceImpl implements OrderDetailService {
 		// TODO Auto-generated method stub
 		return orderDerailDAO.save(orderDetail);
 	}
-	
+//	
+//	@Autowired
+//	OrderDetailDAO oddao;
+//
+//	@Override
+//	public List<OrderDetail> findAll() {
+//		// TODO Auto-generated method stub
+//		return oddao.findAll();
+//	}
+//
+//	@Override
+//	public OrderDetail findById(Long id) {
+//		// TODO Auto-generated method stub
+//		return oddao.findById(id).get();
+//	}
+
+	@Override
+	public List<OrderDetail> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OrderDetail findById(Long id) {
+		// TODO Auto-generated method stub
+		return orderDerailDAO.findById(id).get();
+	}
+
 }

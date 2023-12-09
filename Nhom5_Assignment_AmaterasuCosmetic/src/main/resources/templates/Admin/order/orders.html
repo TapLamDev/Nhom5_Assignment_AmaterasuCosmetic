@@ -68,14 +68,14 @@
 										</thead>
 										<tbody>
 											<tr ng-repeat="item in pager.items">
-												<td>
+												<td class="w-25">
 													<button ng-click="edit(item)" class="btn btn-outline-primary"><i
 														class="bi bi-pencil"></i> Edit</button>
-												<button ng-click="delete(item)" class="btn btn-outline-danger mx-2"><i
+												<button ng-click="delete(item)" class="btn btn-outline-danger"><i
 														class="bi bi-x-circle"></i> Delete</button>
 												</td>
 												<td>{{item.id}}</td>
-												<td>{{item.maDH}} VNĐ</td>
+												<td>{{item.maDH}}</td>
 												<td>{{item.createDate | date:'dd-MM-yyyy'}}</td>
 												<td>{{item.status}}</td>
 											</tr>
@@ -110,12 +110,12 @@
 													<div class="col">
 														<span>ID Đơn hàng:</span> <input ng-model="form.id"
 															type="text" class="form-control" placeholder="ID"
-															disabled="true"><br> <span>Tên Người Đặt:</span> <input ng-model="form.name" type="text"
+															disabled="true"><br> <span>Tên Người Đặt:</span> <input ng-model="form.account.fullname" type="text"
 															class="form-control" placeholder="Tên Người Đặt" disabled="true"><br>
-														<span>Số Điện Thoại: </span> <input ng-model="form.price"
+														<span>Số Điện Thoại: </span> <input ng-model="form.account.numberPhone"
 															type="text" class="form-control"
 															placeholder="Số Điện Thoại" disabled="true"><br>
-                                                            <span>Địa Chỉ: </span> <input ng-model="form.price"
+                                                            <span>Địa Chỉ: </span> <input ng-model="form.addressReceive"
 															type="text" class="form-control"
 															placeholder="Địa Chỉ" disabled="true"><br>
 													</div>
@@ -124,11 +124,11 @@
 															type="date" class="form-control"
 															placeholder="Giá sản phẩm" disabled="true"><br>
                                                             <span>Trạng Thái:</span><select
-															ng-model="" class="form-control">
-															<option>Chờ Xử Lý</option>
-                                                            <option>Đã Xác Nhận</option>
-                                                            <option>Đã Thanh Toán</option>
-                                                            <option>Hủy Đơn Hàng</option>
+															ng-model="form.status" class="form-control">
+															<option value="3">Chờ Xử Lý</option>
+                                                            <option value="1">Đã Xác Nhận</option>s
+                                                            <option value="2">Đã Thanh Toán</option>
+                                                            <option value="4">Hủy Đơn Hàng</option>
 														</select>
                                                     </div>
                                                     <hr>
@@ -144,11 +144,11 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <tr ng-repeat="item in pager.items">
-                                                                    <td>{{item.iamge}}</td>
-                                                                    <td>{{item.name}}</td>
-                                                                    <td>{{item.quantity}}</td>
+                                                                <tr ng-repeat="item in items">
                                                                     <td>{{item.price}}</td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>

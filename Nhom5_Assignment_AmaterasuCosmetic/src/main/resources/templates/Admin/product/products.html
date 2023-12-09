@@ -59,12 +59,24 @@
 													<div class="col">
 														<span>ID sản phẩm:</span> <input ng-model="form.id" type="text"
 															class="form-control" placeholder="ID" disabled="true"><br>
-														<span>Tên sản
-															phẩm:</span> <input ng-model="form.name" type="text"
-															class="form-control" placeholder="Tên sản phẩm"><br>
-														<span>Giá sản phẩm:</span> <input ng-model="form.price"
-															type="text" class="form-control"
-															placeholder="Giá sản phẩm"><br>
+														<span>Tên sản phẩm:</span>
+														<input ng-model="form.name" name="productName" type="text"
+															class="form-control" placeholder="Tên sản phẩm" required>
+														<div
+															ng-show="productForm.productName.$dirty && productForm.productName.$invalid">
+															<span ng-show="productForm.productName.$error.required"
+																style="color: red;">Tên sản phẩm là trường bắt
+																buộc.</span>
+														</div><br>
+														<span>Giá sản phẩm:</span>
+														<input ng-model="form.price" name="productPrice" type="text"
+															class="form-control" placeholder="Giá sản phẩm" required>
+														<div
+															ng-show="productForm.productPrice.$dirty && productForm.productPrice.$invalid">
+															<span ng-show="productForm.productPrice.$error.required"
+																style="color: red;">Giá sản phẩm là trường bắt
+																buộc.</span>
+														</div><br>
 														<div class="">
 															<label class="">Tình trạng: </label>
 															<div class="">
@@ -81,7 +93,6 @@
 																class="form-control w-50"
 																onchange="angular.element(this).scope().imageChanged(this.files)" />
 														</div>
-
 													</div>
 													<div class="col">
 														<span>Ngày tạo:</span><input ng-model="form.createDate"
